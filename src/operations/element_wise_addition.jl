@@ -56,7 +56,7 @@ Compute element-wise vector addition using monoid.
 function GrB_eWiseAdd_Vector_Monoid(                # w<Mask> = accum (w, u+v)
         w::Abstract_GrB_Vector{Z},                  # input/output vector for results
         mask::vector_mask_type,                     # optional mask for w, unused if NULL
-        accum::Abstract_GrB_BinaryOp{Z, X},         # optional accum for z=accum(w,t)
+        accum::Abstract_GrB_BinaryOp{Z, Z, X},      # optional accum for z=accum(w,t)
         monoid::Abstract_GrB_Monoid{X},             # defines '+' for t=u+v
         u::Abstract_GrB_Vector{X},                  # first input:  vector u
         v::Abstract_GrB_Vector{X},                  # second input: vector v
