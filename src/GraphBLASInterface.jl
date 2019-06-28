@@ -4,6 +4,7 @@ include("structures.jl")
 
 const GrB_Index = Union{Int64, UInt64}
 
+const accum_type = Union{Abstract_GrB_BinaryOp, Abstract_GrB_NULL}
 const matrix_mask_type = Union{Abstract_GrB_Matrix, Abstract_GrB_NULL}
 const vector_mask_type = Union{Abstract_GrB_Vector, Abstract_GrB_NULL}
 const desc_type = Union{Abstract_GrB_Descriptor, Abstract_GrB_NULL}

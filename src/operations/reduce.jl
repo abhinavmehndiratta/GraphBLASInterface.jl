@@ -15,24 +15,14 @@ Reduce the entries in a matrix to a vector. By default these methods compute a c
 such that w(i) = sum(A(i,:)), where "sum" is a commutative and associative monoid with an identity value.
 A can be transposed, which reduces down the columns instead of the rows.
 """
-function GrB_Matrix_reduce_Monoid(                  # w<mask> = accum (w,reduce(A))
-    w::Abstract_GrB_Vector{Z},                      # input/output vector for results
-    mask::vector_mask_type,                         # optional mask for w, unused if NULL
-    accum::Abstract_GrB_BinaryOp{Z, Z, X},          # optional accum for z=accum(w,t)
-    monoid::Abstract_GrB_Monoid{X},                 # reduce operator for t=reduce(A)
-    A::Abstract_GrB_Matrix{X},                      # first input:  matrix A
-    desc::desc_type                                 # descriptor for w, mask, and A
-) where {X, Z}
-end
-
-function GrB_Matrix_reduce_Monoid(
-    w::Abstract_GrB_Vector{Z},
-    mask::vector_mask_type,
-    accum::Abstract_GrB_NULL,
-    monoid::Abstract_GrB_Monoid{Z},
-    A::Abstract_GrB_Matrix{Z},
-    desc::desc_type
-) where Z
+function GrB_Matrix_reduce_Monoid(          # w<mask> = accum (w,reduce(A))
+    w::Abstract_GrB_Vector,                 # input/output vector for results
+    mask::vector_mask_type,                 # optional mask for w, unused if NULL
+    accum::accum_type,                      # optional accum for z=accum(w,t)
+    monoid::Abstract_GrB_Monoid,            # reduce operator for t=reduce(A)
+    A::Abstract_GrB_Matrix,                 # first input:  matrix A
+    desc::desc_type                         # descriptor for w, mask, and A
+)
 end
 
 """
@@ -42,24 +32,14 @@ Reduce the entries in a matrix to a vector. By default these methods compute a c
 w(i) = sum(A(i,:)), where "sum" is a commutative and associative binary operator. A can be transposed,
 which reduces down the columns instead of the rows.
 """
-function GrB_Matrix_reduce_BinaryOp(                # w<mask> = accum (w,reduce(A))
-    w::Abstract_GrB_Vector{Z},                      # input/output vector for results
-    mask::vector_mask_type,                         # optional mask for w, unused if NULL
-    accum::Abstract_GrB_BinaryOp{Z, Z, Y},          # optional accum for z=accum(w,t)
-    op::Abstract_GrB_BinaryOp{Y, X, X},             # reduce operator for t=reduce(A)
-    A::Abstract_GrB_Matrix{X},                      # first input:  matrix A
-    desc::desc_type                                 # descriptor for w, mask, and A
-) where {X, Y, Z}
-end
-
-function GrB_Matrix_reduce_BinaryOp(
-    w::Abstract_GrB_Vector{Z},
-    mask::vector_mask_type,
-    accum::Abstract_GrB_NULL,
-    op::Abstract_GrB_BinaryOp{Z, X, X},
-    A::Abstract_GrB_Matrix{X},
-    desc::desc_type
-) where {X, Z}
+function GrB_Matrix_reduce_BinaryOp(        # w<mask> = accum (w,reduce(A))
+    w::Abstract_GrB_Vector,                 # input/output vector for results
+    mask::vector_mask_type,                 # optional mask for w, unused if NULL
+    accum::accum_type,                      # optional accum for z=accum(w,t)
+    op::Abstract_GrB_BinaryOp,              # reduce operator for t=reduce(A)
+    A::Abstract_GrB_Matrix,                 # first input:  matrix A
+    desc::desc_type                         # descriptor for w, mask, and A
+)
 end
 
 """
@@ -69,11 +49,11 @@ Reduce entries in a vector to a scalar. All entries in the vector are "summed"
 using the reduce monoid, which must be associative (otherwise the results are undefined).
 If the vector has no entries, the result is the identity value of the monoid.
 """
-function GrB_Vector_reduce(                         # reduce_to_scalar(u)
-    monoid::Abstract_GrB_Monoid{X},                 # monoid to do the reduction
-    u::Abstract_GrB_Vector{X},                      # vector to reduce
-    desc::desc_type                                 # descriptor
-) where X
+function GrB_Vector_reduce(                 # reduce_to_scalar(u)
+    monoid::Abstract_GrB_Monoid,            # monoid to do the reduction
+    u::Abstract_GrB_Vector,                 # vector to reduce
+    desc::desc_type                         # descriptor
+)
 end
 
 """
@@ -83,9 +63,9 @@ Reduce entries in a matrix to a scalar. All entries in the matrix are "summed"
 using the reduce monoid, which must be associative (otherwise the results are undefined).
 If the matrix has no entries, the result is the identity value of the monoid.
 """
-function GrB_Matrix_reduce(                         # reduce_to_scalar(A)
-    monoid::Abstract_GrB_Monoid{X},                 # monoid to do the reduction
-    A::Abstract_GrB_Matrix{X},                      # matrix to reduce
-    desc::desc_type                                 # descriptor
-) where X
+function GrB_Matrix_reduce(                 # reduce_to_scalar(A)
+    monoid::Abstract_GrB_Monoid,            # monoid to do the reduction
+    A::Abstract_GrB_Matrix,                 # matrix to reduce
+    desc::desc_type                         # descriptor
+)
 end

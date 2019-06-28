@@ -4,10 +4,10 @@
 Initialize a new GraphBLAS unary operator with a specified user-defined function and its types.
 """
 function GrB_UnaryOp_new(
-    op::Abstract_GrB_UnaryOp{Z, X},
+    op::Abstract_GrB_UnaryOp,
     fn::Function,
-    ztype::Abstract_GrB_Type{Z},
-    xtype::Abstract_GrB_Type{X}) where {Z, X}
+    ztype::Abstract_GrB_Type,
+    xtype::Abstract_GrB_Type)
 end
 
 """
@@ -16,11 +16,11 @@ end
 Initialize a new GraphBLAS binary operator with a specified user-defined function and its types.
 """
 function GrB_BinaryOp_new(
-    op::Abstract_GrB_BinaryOp{Z, X, Y},
+    op::Abstract_GrB_BinaryOp,
     fn::Function,
-    ztype::Abstract_GrB_Type{Z},
-    xtype::Abstract_GrB_Type{X},
-    ytype::Abstract_GrB_Type{Y}) where {Z, X, Y}
+    ztype::Abstract_GrB_Type,
+    xtype::Abstract_GrB_Type,
+    ytype::Abstract_GrB_Type)
 end
 
 """
@@ -29,9 +29,9 @@ end
 Create a new monoid with specified binary operator and identity value.
 """
 function GrB_Monoid_new(
-        monoid::Abstract_GrB_Monoid{T, B},
-        binary_op::B,
-        identity::T) where {T, B}
+        monoid::Abstract_GrB_Monoid,
+        binary_op::Abstract_GrB_BinaryOp,
+        identity)
 end
 
 """
@@ -40,7 +40,7 @@ end
 Create a new semiring with specified monoid and binary operator.
 """
 function GrB_Semiring_new(
-    semiring::Abstract_GrB_Semiring{Z, X, Y, M, B},
-    monoid::M,
-    binary_op::B) where {Z, X, Y, M, B}
+    semiring::Abstract_GrB_Semiring,
+    monoid::Abstract_GrB_Monoid,
+    binary_op::Abstract_GrB_BinaryOp)
 end

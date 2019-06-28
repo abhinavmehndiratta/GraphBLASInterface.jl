@@ -4,9 +4,9 @@
 Create a new vector with specified domain and size.
 """
 function GrB_Vector_new(
-        v::Abstract_GrB_Vector{T},
-        type::Abstract_GrB_Type{T},
-        n::GrB_Index) where T
+        v::Abstract_GrB_Vector,
+        type::Abstract_GrB_Type,
+        n::GrB_Index)
 end
 
 """
@@ -49,7 +49,7 @@ function GrB_Vector_build(
         I::Vector{U},
         X::Vector{T},
         nvals::U,
-        dup::Abstract_GrB_BinaryOp{T, T, T}) where {T, U <: GrB_Index}
+        dup::Abstract_GrB_BinaryOp) where {T, U <: GrB_Index}
 end
 
 """

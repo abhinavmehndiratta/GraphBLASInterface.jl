@@ -4,10 +4,10 @@
 Create a new matrix with specified domain and dimensions.
 """
 function GrB_Matrix_new(
-        A::Abstract_GrB_Matrix{T},
-        type::Abstract_GrB_Type{T},
+        A::Abstract_GrB_Matrix,
+        type::Abstract_GrB_Type,
         nrows::GrB_Index,
-        ncols::GrB_Index) where T
+        ncols::GrB_Index)
 end
 
 """
@@ -21,7 +21,7 @@ function GrB_Matrix_build(
         J::Vector{U},
         X::Vector{T},
         nvals::U,
-        dup::Abstract_GrB_BinaryOp{T, T, T}) where {T, U <: GrB_Index}
+        dup::Abstract_GrB_BinaryOp) where {T, U <: GrB_Index}
 end
 
 """

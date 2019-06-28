@@ -26,25 +26,14 @@ Compute element-wise vector addition using semiring. Semiring's add operator is 
 `w<mask> = accum (w, u + v)`
 """
 function GrB_eWiseAdd_Vector_Semiring(              # w<Mask> = accum (w, u+v)
-        w::Abstract_GrB_Vector{Z},                  # input/output vector for results
+        w::Abstract_GrB_Vector,                     # input/output vector for results
         mask::vector_mask_type,                     # optional mask for w, unused if NULL
-        accum::Abstract_GrB_BinaryOp{Z, Z, W},      # optional accum for z=accum(w,t)
-        semiring::Abstract_GrB_Semiring{W, X, Y},   # defines '+' for t=u+v
-        u::Abstract_GrB_Vector{X},                  # first input:  vector u
-        v::Abstract_GrB_Vector{Y},                  # second input: vector v
+        accum::accum_type,                          # optional accum for z=accum(w,t)
+        semiring::Abstract_GrB_Semiring,            # defines '+' for t=u+v
+        u::Abstract_GrB_Vector,                     # first input:  vector u
+        v::Abstract_GrB_Vector,                     # second input: vector v
         desc::desc_type                             # descriptor for w and mask
-) where {W, X, Y, Z}
-end
-
-function GrB_eWiseAdd_Vector_Semiring(
-        w::Abstract_GrB_Vector{Z},
-        mask::vector_mask_type,
-        accum::Abstract_GrB_NULL,
-        semiring::Abstract_GrB_Semiring{Z, X, Y},
-        u::Abstract_GrB_Vector{X},
-        v::Abstract_GrB_Vector{Y},
-        desc::desc_type
-) where {X, Y, Z}
+)
 end
 
 """
@@ -54,25 +43,14 @@ Compute element-wise vector addition using monoid.
 `w<mask> = accum (w, u + v)`
 """
 function GrB_eWiseAdd_Vector_Monoid(                # w<Mask> = accum (w, u+v)
-        w::Abstract_GrB_Vector{Z},                  # input/output vector for results
+        w::Abstract_GrB_Vector,                     # input/output vector for results
         mask::vector_mask_type,                     # optional mask for w, unused if NULL
-        accum::Abstract_GrB_BinaryOp{Z, Z, X},      # optional accum for z=accum(w,t)
-        monoid::Abstract_GrB_Monoid{X},             # defines '+' for t=u+v
-        u::Abstract_GrB_Vector{X},                  # first input:  vector u
-        v::Abstract_GrB_Vector{X},                  # second input: vector v
+        accum::accum_type,                          # optional accum for z=accum(w,t)
+        monoid::Abstract_GrB_Monoid,                # defines '+' for t=u+v
+        u::Abstract_GrB_Vector,                     # first input:  vector u
+        v::Abstract_GrB_Vector,                     # second input: vector v
         desc::desc_type                             # descriptor for w and mask
-) where {X, Z}
-end
-
-function GrB_eWiseAdd_Vector_Monoid(
-        w::Abstract_GrB_Vector{Z},
-        mask::vector_mask_type,
-        accum::Abstract_GrB_NULL,
-        monoid::Abstract_GrB_Monoid{Z},
-        u::Abstract_GrB_Vector{Z},
-        v::Abstract_GrB_Vector{Z},
-        desc::desc_type
-) where Z
+)
 end
 
 """
@@ -82,25 +60,14 @@ Compute element-wise vector addition using binary operator.
 `w<mask> = accum (w, u + v)`
 """
 function GrB_eWiseAdd_Vector_BinaryOp(              # w<Mask> = accum (w, u+v)
-        w::Abstract_GrB_Vector{Z},                  # input/output vector for results
+        w::Abstract_GrB_Vector,                     # input/output vector for results
         mask::vector_mask_type,                     # optional mask for w, unused if NULL
-        accum::Abstract_GrB_BinaryOp{Z, Z, W},      # optional accum for z=accum(w,t)
-        add::Abstract_GrB_BinaryOp{W, X, Y},        # defines '+' for t=u+v
-        u::Abstract_GrB_Vector{X},                  # first input:  vector u
-        v::Abstract_GrB_Vector{Y},                  # second input: vector v
+        accum::accum_type,                          # optional accum for z=accum(w,t)
+        add::Abstract_GrB_BinaryOp,                 # defines '+' for t=u+v
+        u::Abstract_GrB_Vector,                     # first input:  vector u
+        v::Abstract_GrB_Vector,                     # second input: vector v
         desc::desc_type                             # descriptor for w and mask
-) where {W, X, Y, Z}
-end
-
-function GrB_eWiseAdd_Vector_BinaryOp(
-        w::Abstract_GrB_Vector{Z},
-        mask::vector_mask_type,
-        accum::Abstract_GrB_NULL,
-        add::Abstract_GrB_BinaryOp{Z, X, Y},
-        u::Abstract_GrB_Vector{X},
-        v::Abstract_GrB_Vector{Y},
-        desc::desc_type
-) where {X, Y, Z}
+)
 end
 
 """
@@ -109,26 +76,15 @@ end
 Compute element-wise matrix addition using semiring. Semiring's add operator is used.
 `C<Mask> = accum (C, A + B)`
 """
-function GrB_eWiseAdd_Matrix_Semiring(          # C<Mask> = accum (C, A+B)
-    C::Abstract_GrB_Matrix{Z},                  # input/output matrix for results
-    Mask::matrix_mask_type,                     # optional mask for C, unused if NULL
-    accum::Abstract_GrB_BinaryOp{Z, Z, W},      # optional accum for Z=accum(C,T)
-    semiring::Abstract_GrB_Semiring{W, X, Y},   # defines '+' for T=A+B
-    A::Abstract_GrB_Matrix{X},                  # first input:  matrix A
-    B::Abstract_GrB_Matrix{Y},                  # second input: matrix B
-    desc::desc_type                             # descriptor for C, Mask, A, and B
-) where {W, X, Y, Z}
-end
-
-function GrB_eWiseAdd_Matrix_Semiring(
-    C::Abstract_GrB_Matrix{Z},
-    Mask::matrix_mask_type,
-    accum::Abstract_GrB_NULL,
-    semiring::Abstract_GrB_Semiring{Z, X, Y},
-    A::Abstract_GrB_Matrix{X},
-    B::Abstract_GrB_Matrix{Y},
-    desc::desc_type
-) where {X, Y, Z}
+function GrB_eWiseAdd_Matrix_Semiring(              # C<Mask> = accum (C, A+B)
+    C::Abstract_GrB_Matrix,                         # input/output matrix for results
+    Mask::matrix_mask_type,                         # optional mask for C, unused if NULL
+    accum::accum_type,                              # optional accum for Z=accum(C,T)
+    semiring::Abstract_GrB_Semiring,                # defines '+' for T=A+B
+    A::Abstract_GrB_Matrix,                         # first input:  matrix A
+    B::Abstract_GrB_Matrix,                         # second input: matrix B
+    desc::desc_type                                 # descriptor for C, Mask, A, and B
+)
 end
 
 """
@@ -138,25 +94,14 @@ Compute element-wise matrix addition using monoid.
 `C<Mask> = accum (C, A + B)`
 """
 function GrB_eWiseAdd_Matrix_Monoid(            # C<Mask> = accum (C, A+B)
-    C::Abstract_GrB_Matrix{Z},                  # input/output matrix for results
+    C::Abstract_GrB_Matrix,                     # input/output matrix for results
     Mask::matrix_mask_type,                     # optional mask for C, unused if NULL
-    accum::Abstract_GrB_BinaryOp{Z, Z, X},      # optional accum for Z=accum(C,T)
-    monoid::Abstract_GrB_Monoid{X},             # defines '+' for T=A+B
-    A::Abstract_GrB_Matrix{X},                  # first input:  matrix A
-    B::Abstract_GrB_Matrix{X},                  # second input: matrix B
+    accum::accum_type,                          # optional accum for Z=accum(C,T)
+    monoid::Abstract_GrB_Monoid,                # defines '+' for T=A+B
+    A::Abstract_GrB_Matrix,                     # first input:  matrix A
+    B::Abstract_GrB_Matrix,                     # second input: matrix B
     desc::desc_type                             # descriptor for C, Mask, A, and B
-) where {X, Z}
-end
-
-function GrB_eWiseAdd_Matrix_Monoid(
-    C::Abstract_GrB_Matrix{Z},
-    Mask::matrix_mask_type,
-    accum::Abstract_GrB_NULL,
-    monoid::Abstract_GrB_Monoid{Z},
-    A::Abstract_GrB_Matrix{Z},
-    B::Abstract_GrB_Matrix{Z},
-    desc::desc_type
-) where Z
+)
 end
 
 """
@@ -166,23 +111,12 @@ Compute element-wise matrix addition using binary operator.
 `C<Mask> = accum (C, A + B)`
 """
 function GrB_eWiseAdd_Matrix_BinaryOp(          # C<Mask> = accum (C, A+B)
-    C::Abstract_GrB_Matrix{Z},                  # input/output matrix for results
+    C::Abstract_GrB_Matrix,                     # input/output matrix for results
     Mask::matrix_mask_type,                     # optional mask for C, unused if NULL
-    accum::Abstract_GrB_BinaryOp{Z, Z, W},      # optional accum for Z=accum(C,T)
-    add::Abstract_GrB_BinaryOp{W, X, Y},        # defines '+' for T=A+B
-    A::Abstract_GrB_Matrix{X},                  # first input:  matrix A
-    B::Abstract_GrB_Matrix{Y},                  # second input: matrix B
+    accum::accum_type,                          # optional accum for Z=accum(C,T)
+    add::Abstract_GrB_BinaryOp,                 # defines '+' for T=A+B
+    A::Abstract_GrB_Matrix,                     # first input:  matrix A
+    B::Abstract_GrB_Matrix,                     # second input: matrix B
     desc::desc_type                             # descriptor for C, Mask, A, and B
-) where {W, X, Y, Z}
-end
-
-function GrB_eWiseAdd_Matrix_BinaryOp(
-    C::Abstract_GrB_Matrix{Z},
-    Mask::matrix_mask_type,
-    accum::Abstract_GrB_NULL,
-    add::Abstract_GrB_BinaryOp{Z, X, Y},
-    A::Abstract_GrB_Matrix{X},
-    B::Abstract_GrB_Matrix{Y},
-    desc::desc_type
-) where {X, Y, Z}
+)
 end
