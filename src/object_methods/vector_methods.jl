@@ -1,7 +1,7 @@
 """
     GrB_Vector_new(v, type, n)
 
-Create a new vector with specified domain and size.
+Initialize a vector with specified domain and size.
 """
 function GrB_Vector_new(
         v::Abstract_GrB_Vector,
@@ -12,9 +12,9 @@ end
 """
     GrB_Vector_dup(w, u)
 
-Create a new vector with the same domain, size, and contents as another vector.
+Initialize a vector with the same domain, size, and contents as another vector.
 """
-function GrB_Vector_dup(w::Abstract_GrB_Vector{T}, u::Abstract_GrB_Vector{T}) where T end
+function GrB_Vector_dup(w::Abstract_GrB_Vector, u::Abstract_GrB_Vector) end
 
 """
     GrB_Vector_clear(v)
@@ -45,11 +45,11 @@ function GrB_Vector_nvals(v::Abstract_GrB_Vector) end
 Store elements from tuples into a vector.
 """
 function GrB_Vector_build(
-        w::Abstract_GrB_Vector{T},
+        w::Abstract_GrB_Vector,
         I::Vector{U},
-        X::Vector{T},
+        X::Vector,
         nvals::U,
-        dup::Abstract_GrB_BinaryOp) where {T, U <: GrB_Index}
+        dup::Abstract_GrB_BinaryOp) where {U <: GrB_Index}
 end
 
 """
@@ -58,9 +58,9 @@ end
 Set one element of a vector to a given value, w[i] = x.
 """
 function GrB_Vector_setElement(
-        w::Abstract_GrB_Vector{T},
-        x::T,
-        i::GrB_Index) where T
+        w::Abstract_GrB_Vector,
+        x,
+        i::GrB_Index)
 end
 
 """

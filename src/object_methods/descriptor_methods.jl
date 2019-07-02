@@ -1,7 +1,7 @@
 """
     GrB_Descriptor_new(desc)
 
-Create a new (empty or default) descriptor.
+Initialize a descriptor with default field values.
 """
 function GrB_Descriptor_new(desc::Abstract_GrB_Descriptor) end
 

@@ -157,11 +157,11 @@ GrB_Vector_nvals, GrB_Vector_setElement, GrB_Vector_extractElement, GrB_Vector_e
 GrB_Descriptor_new, GrB_Descriptor_set,
 
 # Algebra Methods
-GrB_UnaryOp_new, GrB_BinaryOp_new, GrB_Monoid_new, GrB_Semiring_new,
+GrB_Type_new, GrB_UnaryOp_new, GrB_BinaryOp_new, GrB_Monoid_new, GrB_Semiring_new,
 
 # Free Methods
-GrB_free, GrB_UnaryOp_free, GrB_BinaryOp_free, GrB_Monoid_free, GrB_Semiring_free,
-GrB_Vector_free, GrB_Matrix_free, GrB_Descriptor_free,
+GrB_free, GrB_Type_free, GrB_UnaryOp_free, GrB_BinaryOp_free, GrB_Monoid_free, 
+GrB_Semiring_free, GrB_Vector_free, GrB_Matrix_free, GrB_Descriptor_free,
 
 #########################################################################
 #                            Operations                                 #
@@ -201,5 +201,29 @@ GrB_transpose,
 #########################################################################
 
 GrB_wait, GrB_error
+
+#########################################################################
+#                              Enums                                    # 
+#########################################################################
+
+export GrB_Info
+for s in instances(GrB_Info)
+    @eval export $(Symbol(s))
+end
+
+export GrB_Mode
+for s in instances(GrB_Mode)
+    @eval export $(Symbol(s))
+end
+
+export GrB_Desc_Field
+for s in instances(GrB_Desc_Field)
+    @eval export $(Symbol(s))
+end
+
+export GrB_Desc_Value
+for s in instances(GrB_Desc_Value)
+    @eval export $(Symbol(s))
+end
 
 end # module

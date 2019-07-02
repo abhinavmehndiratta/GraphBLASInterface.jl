@@ -11,9 +11,9 @@ abstract type Abstract_GrB_Monoid end
 
 abstract type Abstract_GrB_Semiring end
 
-abstract type Abstract_GrB_Vector{T} end
+abstract type Abstract_GrB_Vector end
 
-abstract type Abstract_GrB_Matrix{T} end
+abstract type Abstract_GrB_Matrix end
 
 abstract type Abstract_GrB_Descriptor end
 

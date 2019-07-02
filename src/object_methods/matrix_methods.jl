@@ -1,7 +1,7 @@
 """
     GrB_Matrix_new(A, type, nrows, ncols)
 
-Create a new matrix with specified domain and dimensions.
+Initialize a matrix with specified domain and dimensions.
 """
 function GrB_Matrix_new(
         A::Abstract_GrB_Matrix,
@@ -16,12 +16,12 @@ end
 Store elements from tuples into a matrix.
 """
 function GrB_Matrix_build(
-        C::Abstract_GrB_Matrix{T},
+        C::Abstract_GrB_Matrix,
         I::Vector{U},
         J::Vector{U},
-        X::Vector{T},
+        X::Vector,
         nvals::U,
-        dup::Abstract_GrB_BinaryOp) where {T, U <: GrB_Index}
+        dup::Abstract_GrB_BinaryOp) where {U <: GrB_Index}
 end
 
 """
@@ -51,9 +51,9 @@ function GrB_Matrix_nvals(A::Abstract_GrB_Matrix) end
 """
     GrB_Matrix_dup(C, A)
 
-Create a new matrix with the same domain, dimensions, and contents as another matrix.
+Initialize a new matrix with the same domain, dimensions, and contents as another matrix.
 """
-function GrB_Matrix_dup(C::Abstract_GrB_Matrix{T}, A::Abstract_GrB_Matrix{T}) where T end
+function GrB_Matrix_dup(C::Abstract_GrB_Matrix, A::Abstract_GrB_Matrix) end
 
 """
     GrB_Matrix_clear(A)
@@ -68,10 +68,10 @@ function GrB_Matrix_clear(A::Abstract_GrB_Matrix) end
 Set one element of a matrix to a given value, C[I][J] = X.
 """
 function GrB_Matrix_setElement(
-        C::Abstract_GrB_Matrix{T},
-        X::T,
+        C::Abstract_GrB_Matrix,
+        X,
         I::GrB_Index,
-        J::GrB_Index) where T
+        J::GrB_Index)
 end
 
 """

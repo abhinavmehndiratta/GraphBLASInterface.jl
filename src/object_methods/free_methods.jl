@@ -3,6 +3,7 @@
 
 Generic method to free a GraphBLAS object.
 """
+GrB_free(object::Abstract_GrB_Type) = GrB_Type_free(object)
 GrB_free(object::Abstract_GrB_UnaryOp) = GrB_UnaryOp_free(object)
 GrB_free(object::Abstract_GrB_BinaryOp) = GrB_BinaryOp_free(object)
 GrB_free(object::Abstract_GrB_Monoid) = GrB_Monoid_free(object)
@@ -10,6 +11,13 @@ GrB_free(object::Abstract_GrB_Semiring) = GrB_Semiring_free(object)
 GrB_free(object::Abstract_GrB_Vector) = GrB_Vector_free(object)
 GrB_free(object::Abstract_GrB_Matrix) = GrB_Matrix_free(object)
 GrB_free(object::Abstract_GrB_Descriptor) = GrB_Descriptor_free(object)
+
+"""
+    GrB_Type_free(unaryop)
+
+Free GraphBLAS user-defined type.
+"""
+function GrB_Type_free(type::Abstract_GrB_Type) end
 
 """
     GrB_UnaryOp_free(unaryop)

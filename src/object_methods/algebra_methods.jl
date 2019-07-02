@@ -1,7 +1,14 @@
 """
+    GrB_Type_new(type, sizeof_type)
+
+Initialize a GraphBLAS type with its size.
+"""
+function GrB_Type_new(type::Abstract_GrB_Type, sizeof_type::UInt) end
+
+"""
     GrB_UnaryOp_new(op, fn, ztype, xtype)
 
-Initialize a new GraphBLAS unary operator with a specified user-defined function and its types.
+Initialize a GraphBLAS unary operator with a specified user-defined function and its types.
 """
 function GrB_UnaryOp_new(
     op::Abstract_GrB_UnaryOp,
@@ -13,7 +20,7 @@ end
 """
     GrB_BinaryOp_new(op, fn, ztype, xtype, ytype)
 
-Initialize a new GraphBLAS binary operator with a specified user-defined function and its types.
+Initialize a GraphBLAS binary operator with a specified user-defined function and its types.
 """
 function GrB_BinaryOp_new(
     op::Abstract_GrB_BinaryOp,
@@ -26,7 +33,7 @@ end
 """
     GrB_Monoid_new(monoid, binary_op, identity)
 
-Create a new monoid with specified binary operator and identity value.
+Initialize a GraphBLAS monoid with specified binary operator and identity value.
 """
 function GrB_Monoid_new(
         monoid::Abstract_GrB_Monoid,
@@ -37,7 +44,7 @@ end
 """
     GrB_Semiring_new(semiring, monoid, binary_op)
 
-Create a new semiring with specified monoid and binary operator.
+Initialize a GraphBLAS semiring with specified monoid and binary operator.
 """
 function GrB_Semiring_new(
     semiring::Abstract_GrB_Semiring,
