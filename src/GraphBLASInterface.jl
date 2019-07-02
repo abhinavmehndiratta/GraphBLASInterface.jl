@@ -226,4 +226,13 @@ for s in instances(GrB_Desc_Value)
     @eval export $(Symbol(s))
 end
 
+# GrB_NULL
+export GrB_NULL
+
+# GrB_ALL
+export GrB_ALL
+
+#GrB_Index
+export GrB_Index
+
 end # module
