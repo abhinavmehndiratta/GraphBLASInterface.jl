@@ -1,4 +1,11 @@
 """
+    GrB_Vector(varargs...)
+
+Create a new NULL GraphBLAS vector.
+"""
+function GrB_Vector(varargs...) end
+
+"""
     GrB_Vector_new(v, type, n)
 
 Initialize a vector with specified domain and size.

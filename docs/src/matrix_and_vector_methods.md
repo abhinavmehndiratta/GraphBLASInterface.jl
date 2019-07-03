@@ -1,6 +1,7 @@
 ## Matrix functions
 
 ```@docs
+GrB_Matrix
 GrB_Matrix_new
 GrB_Matrix_build
 GrB_Matrix_nrows
@@ -16,6 +17,7 @@ GrB_Matrix_clear
 ## Vector functions
 
 ```@docs
+GrB_Vector
 GrB_Vector_new
 GrB_Vector_build
 GrB_Vector_size

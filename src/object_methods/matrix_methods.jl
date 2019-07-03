@@ -1,4 +1,11 @@
 """
+    GrB_Matrix(varargs...)
+
+Create a new NULL GraphBLAS matrix.
+"""
+function GrB_Matrix(varargs...) end
+
+"""
     GrB_Matrix_new(A, type, nrows, ncols)
 
 Initialize a matrix with specified domain and dimensions.

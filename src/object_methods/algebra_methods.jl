@@ -1,4 +1,11 @@
 """
+    GrB_Type(varargs...)
+
+Create a new NULL GraphBLAS type.
+"""
+function GrB_Type(varargs...) end
+
+"""
     GrB_Type_new(type, sizeof_type)
 
 Initialize a GraphBLAS type with its size.
@@ -6,9 +13,17 @@ Initialize a GraphBLAS type with its size.
 function GrB_Type_new(type::Abstract_GrB_Type, sizeof_type::UInt) end
 
 """
+    GrB_UnaryOp(varargs...)
+
+Create a new NULL GraphBLAS unary operator.
+"""
+function GrB_UnaryOp(varargs...) end
+
+"""
     GrB_UnaryOp_new(op, fn, ztype, xtype)
 
 Initialize a GraphBLAS unary operator with a specified user-defined function and its types.
+The function should take a single value(x) & return an output(z), f(x) = z.
 
 # Examples
 ```jldoctest
@@ -70,9 +85,17 @@ function GrB_UnaryOp_new(
 end
 
 """
+    GrB_BinaryOp(varargs...)
+
+Create a new NULL GraphBLAS binary operator.
+"""
+function GrB_BinaryOp(varargs...) end
+
+"""
     GrB_BinaryOp_new(op, fn, ztype, xtype, ytype)
 
 Initialize a GraphBLAS binary operator with a specified user-defined function and its types.
+The function should take 2 values(x, y) & return an output(z), f(x, y) = z.
 
 # Examples
 ```jldoctest
@@ -126,6 +149,13 @@ function GrB_BinaryOp_new(
 end
 
 """
+    GrB_Monoid(varargs...)
+
+Create a new NULL GraphBLAS monoid.
+"""
+function GrB_Monoid(varargs...) end
+
+"""
     GrB_Monoid_new(monoid, binary_op, identity)
 
 Initialize a GraphBLAS monoid with specified binary operator and identity value.
@@ -135,6 +165,13 @@ function GrB_Monoid_new(
         binary_op::Abstract_GrB_BinaryOp,
         identity)
 end
+
+"""
+    GrB_Semiring(varargs...)
+
+Create a new NULL GraphBLAS semiring.
+"""
+function GrB_Semiring(varargs...) end
 
 """
     GrB_Semiring_new(semiring, monoid, binary_op)

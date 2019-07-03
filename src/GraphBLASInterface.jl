@@ -145,19 +145,21 @@ GrB_init, GrB_finalize,
 #########################################################################
 
 # Matrix Methods
-GrB_Matrix_new, GrB_Matrix_build, GrB_Matrix_dup, GrB_Matrix_clear,
+GrB_Matrix, GrB_Matrix_new, GrB_Matrix_build, GrB_Matrix_dup, GrB_Matrix_clear,
 GrB_Matrix_nrows, GrB_Matrix_ncols, GrB_Matrix_nvals, GrB_Matrix_setElement,
 GrB_Matrix_extractElement, GrB_Matrix_extractTuples,
 
 # Vector Methods
-GrB_Vector_new, GrB_Vector_build, GrB_Vector_dup, GrB_Vector_clear, GrB_Vector_size,
-GrB_Vector_nvals, GrB_Vector_setElement, GrB_Vector_extractElement, GrB_Vector_extractTuples,
+GrB_Vector, GrB_Vector_new, GrB_Vector_build, GrB_Vector_dup, GrB_Vector_clear, 
+GrB_Vector_size, GrB_Vector_nvals, GrB_Vector_setElement, GrB_Vector_extractElement, 
+GrB_Vector_extractTuples,
 
 # Descriptor Methods
-GrB_Descriptor_new, GrB_Descriptor_set,
+GrB_Descriptor, GrB_Descriptor_new, GrB_Descriptor_set,
 
 # Algebra Methods
-GrB_Type_new, GrB_UnaryOp_new, GrB_BinaryOp_new, GrB_Monoid_new, GrB_Semiring_new,
+GrB_Type, GrB_Type_new, GrB_UnaryOp, GrB_UnaryOp_new, GrB_BinaryOp, GrB_BinaryOp_new, 
+GrB_Monoid, GrB_Monoid_new, GrB_Semiring, GrB_Semiring_new,
 
 # Free Methods
 GrB_free, GrB_Type_free, GrB_UnaryOp_free, GrB_BinaryOp_free, GrB_Monoid_free, 

@@ -1,4 +1,11 @@
 """
+    GrB_Descriptor(varargs...)
+
+Create a new NULL GraphBLAS descriptor.
+"""
+function GrB_Descriptor(varargs...) end
+
+"""
     GrB_Descriptor_new(desc)
 
 Initialize a descriptor with default field values.

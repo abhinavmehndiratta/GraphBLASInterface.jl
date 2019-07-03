@@ -1,9 +1,15 @@
 ## Algebra methods
 
 ```@docs
+GrB_Type
+GrB_Type_new
+GrB_UnaryOp
 GrB_UnaryOp_new
+GrB_BinaryOp
 GrB_BinaryOp_new
+GrB_Monoid
 GrB_Monoid_new
+GrB_Semiring
 GrB_Semiring_new
 ```
 

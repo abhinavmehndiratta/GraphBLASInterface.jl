@@ -2,6 +2,7 @@
 
 ```@docs
 GrB_free
+GrB_Type_free
 GrB_UnaryOp_free
 GrB_BinaryOp_free
 GrB_Monoid_free
