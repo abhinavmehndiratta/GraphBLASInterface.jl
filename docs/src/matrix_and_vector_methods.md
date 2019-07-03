@@ -1,3 +1,7 @@
+```@docs
+has_offset_indices
+```
+
 ## Matrix functions
 
 ```@docs
