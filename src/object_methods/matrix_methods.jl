@@ -10,7 +10,7 @@ has_offset_indices(A::Union{Abstract_GrB_Matrix, Abstract_GrB_Vector}) = _NI("ha
 """
     zero(A)
 
-Return an empty GraphBLAS matrix/vector with zero rows and columns.
+Return an empty GraphBLAS matrix/vector with zero rows & columns and same type as A.
 """
 zero(A::Union{Abstract_GrB_Matrix, Abstract_GrB_Vector}) = _NI("zero")
 
