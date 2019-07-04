@@ -10,12 +10,7 @@ const vector_mask_type = Union{Abstract_GrB_Vector, Abstract_GrB_NULL}
 const desc_type = Union{Abstract_GrB_Descriptor, Abstract_GrB_NULL}
 const indices_type = Union{Vector{<:GrB_Index}, Abstract_GrB_ALL}
 
-"""
-    has_offset_indices(A)
-
-Return true if indices for a GraphBLAS matrix/vector start at 0 instead of 1.
-"""
-function has_offset_indices(A::Union{Abstract_GrB_Matrix, Abstract_GrB_Vector}) end
+_NI(m) = error("Not implemented: $m")
 
 include("enums.jl")
 include("context_methods.jl")

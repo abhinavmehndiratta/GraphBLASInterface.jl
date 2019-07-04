@@ -1,9 +1,25 @@
+import Base.zero
+
+"""
+    has_offset_indices(A)
+
+Return true if indices of a GraphBLAS matrix/vector start at 0 instead of 1.
+"""
+has_offset_indices(A::Union{Abstract_GrB_Matrix, Abstract_GrB_Vector}) = _NI("has_offset_indices")
+
+"""
+    zero(A)
+
+Return an empty GraphBLAS matrix/vector with zero rows and columns.
+"""
+zero(A::Union{Abstract_GrB_Matrix, Abstract_GrB_Vector}) = _NI("zero")
+
 """
     GrB_Matrix(varargs...)
 
 Create a new NULL GraphBLAS matrix.
 """
-function GrB_Matrix(varargs...) end
+GrB_Matrix(varargs...) = _NI("GrB_Matrix")
 
 """
     GrB_Matrix_new(A, type, nrows, ncols)
@@ -24,12 +40,11 @@ julia> GrB_Matrix_new(MAT, GrB_INT8, 4, 4)
 GrB_SUCCESS::GrB_Info = 0
 ```
 """
-function GrB_Matrix_new(
-        A::Abstract_GrB_Matrix,
-        type::Abstract_GrB_Type,
-        nrows::GrB_Index,
-        ncols::GrB_Index)
-end
+GrB_Matrix_new(
+    A::Abstract_GrB_Matrix,
+    type::Abstract_GrB_Type,
+    nrows::GrB_Index,
+    ncols::GrB_Index) = _NI("GrB_Matrix_new")
 
 """
     GrB_Matrix_build(C, I, J, X, nvals, dup)
@@ -72,14 +87,13 @@ row: 3 : 1 entries [4:4]
     column 3: int8 6
 ```
 """
-function GrB_Matrix_build(
-        C::Abstract_GrB_Matrix,
-        I::Vector{U},
-        J::Vector{U},
-        X::Vector,
-        nvals::U,
-        dup::Abstract_GrB_BinaryOp) where {U <: GrB_Index}
-end
+GrB_Matrix_build(
+    C::Abstract_GrB_Matrix,
+    I::Vector{U},
+    J::Vector{U},
+    X::Vector,
+    nvals::U,
+    dup::Abstract_GrB_BinaryOp) where {U <: GrB_Index} = _NI("GrB_Matrix_build")
 
 """
     GrB_Matrix_nrows(A)
@@ -104,7 +118,7 @@ julia> GrB_Matrix_nrows(MAT)
 4
 ```
 """
-function GrB_Matrix_nrows(A::Abstract_GrB_Matrix) end
+GrB_Matrix_nrows(A::Abstract_GrB_Matrix) = _NI("GrB_Matrix_nrows")
 
 """
     GrB_Matrix_ncols(A)
@@ -129,7 +143,7 @@ julia> GrB_Matrix_ncols(MAT)
 4
 ```
 """
-function GrB_Matrix_ncols(A::Abstract_GrB_Matrix) end
+GrB_Matrix_ncols(A::Abstract_GrB_Matrix) = _NI("GrB_Matrix_ncols")
 
 """
     GrB_Matrix_nvals(A)
@@ -159,7 +173,7 @@ julia> GrB_Matrix_nvals(MAT)
 5
 ```
 """
-function GrB_Matrix_nvals(A::Abstract_GrB_Matrix) end
+GrB_Matrix_nvals(A::Abstract_GrB_Matrix) = _NI("GrB_Matrix_nvals")
 
 """
     GrB_Matrix_dup(C, A)
@@ -208,7 +222,7 @@ row: 3 : 1 entries [4:4]
     column 3: int8 6
 ```
 """
-function GrB_Matrix_dup(C::Abstract_GrB_Matrix, A::Abstract_GrB_Matrix) end
+GrB_Matrix_dup(C::Abstract_GrB_Matrix, A::Abstract_GrB_Matrix) = _NI("GrB_Matrix_dup")
 
 """
     GrB_Matrix_clear(A)
@@ -243,7 +257,7 @@ julia> GrB_Matrix_nvals(MAT)
 0
 ```
 """
-function GrB_Matrix_clear(A::Abstract_GrB_Matrix) end
+GrB_Matrix_clear(A::Abstract_GrB_Matrix) = _NI("GrB_Matrix_clear")
 
 """
     GrB_Matrix_setElement(C, X, I, J)
@@ -279,12 +293,11 @@ julia> GrB_Matrix_extractElement(MAT, 1, 1)
 7
 ```
 """
-function GrB_Matrix_setElement(
-        C::Abstract_GrB_Matrix,
-        X,
-        I::GrB_Index,
-        J::GrB_Index)
-end
+GrB_Matrix_setElement(
+    C::Abstract_GrB_Matrix,
+    X,
+    I::GrB_Index,
+    J::GrB_Index) = _NI("GrB_Matrix_setElement")
 
 """
     GrB_Matrix_extractElement(A, row_index, col_index)
@@ -314,11 +327,10 @@ julia> GrB_Matrix_extractElement(MAT, 1, 1)
 2
 ```
 """
-function GrB_Matrix_extractElement(
-        A::Abstract_GrB_Matrix,
-        row_index::GrB_Index,
-        col_index::GrB_Index)
-end
+GrB_Matrix_extractElement(
+    A::Abstract_GrB_Matrix,
+    row_index::GrB_Index,
+    col_index::GrB_Index) = _NI("GrB_Matrix_extractElement")
 
 """
     GrB_Matrix_extractTuples(A)
@@ -348,4 +360,4 @@ julia> GrB_Matrix_extractTuples(MAT)
 ([1, 2, 2, 2, 3], [1, 1, 2, 3, 3], Int8[2, 4, 3, 5, 6])
 ```
 """
-function GrB_Matrix_extractTuples(A::Abstract_GrB_Matrix) end
+GrB_Matrix_extractTuples(A::Abstract_GrB_Matrix) = _NI("GrB_Matrix_extractTuples")

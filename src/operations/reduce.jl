@@ -55,15 +55,14 @@ column: 0 : 2 entries [0:1]
     row 2: int64 70
 ```
 """
-function GrB_Matrix_reduce_Monoid(          # w<mask> = accum (w,reduce(A))
+GrB_Matrix_reduce_Monoid(                   # w<mask> = accum (w,reduce(A))
     w::Abstract_GrB_Vector,                 # input/output vector for results
     mask::vector_mask_type,                 # optional mask for w, unused if NULL
     accum::accum_type,                      # optional accum for z=accum(w,t)
     monoid::Abstract_GrB_Monoid,            # reduce operator for t=reduce(A)
     A::Abstract_GrB_Matrix,                 # first input:  matrix A
     desc::desc_type                         # descriptor for w, mask, and A
-)
-end
+) = _NI("GrB_Matrix_reduce_Monoid")
 
 """
     GrB_Matrix_reduce_BinaryOp(w, mask, accum, op, A, desc)
@@ -112,15 +111,14 @@ column: 0 : 2 entries [0:1]
     row 2: int64 1200
 ```
 """
-function GrB_Matrix_reduce_BinaryOp(        # w<mask> = accum (w,reduce(A))
+GrB_Matrix_reduce_BinaryOp(                 # w<mask> = accum (w,reduce(A))
     w::Abstract_GrB_Vector,                 # input/output vector for results
     mask::vector_mask_type,                 # optional mask for w, unused if NULL
     accum::accum_type,                      # optional accum for z=accum(w,t)
     op::Abstract_GrB_BinaryOp,              # reduce operator for t=reduce(A)
     A::Abstract_GrB_Matrix,                 # first input:  matrix A
     desc::desc_type                         # descriptor for w, mask, and A
-)
-end
+) = _NI("GrB_Matrix_reduce_BinaryOp")
 
 """
     GrB_Vector_reduce(monoid, u, desc)
@@ -151,12 +149,11 @@ julia> GrB_Vector_reduce(GxB_MAX_INT64_MONOID, u, GrB_NULL)
 30
 ```
 """
-function GrB_Vector_reduce(                 # reduce_to_scalar(u)
+GrB_Vector_reduce(                          # reduce_to_scalar(u)
     monoid::Abstract_GrB_Monoid,            # monoid to do the reduction
     u::Abstract_GrB_Vector,                 # vector to reduce
     desc::desc_type                         # descriptor
-)
-end
+) = _NI("GrB_Vector_reduce")
 
 """
     GrB_Matrix_reduce(monoid, A, desc)
@@ -187,9 +184,8 @@ julia> GrB_Matrix_reduce(GxB_MIN_INT64_MONOID, A, GrB_NULL)
 10
 ```
 """
-function GrB_Matrix_reduce(                 # reduce_to_scalar(A)
+ GrB_Matrix_reduce(                         # reduce_to_scalar(A)
     monoid::Abstract_GrB_Monoid,            # monoid to do the reduction
     A::Abstract_GrB_Matrix,                 # matrix to reduce
     desc::desc_type                         # descriptor
-)
-end
+) = _NI("GrB_Matrix_reduce")

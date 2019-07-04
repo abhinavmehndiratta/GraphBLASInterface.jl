@@ -51,15 +51,14 @@ column: 0 : 2 entries [0:1]
     row 2: int64 -20
 ```
 """
-function GrB_Vector_apply(              # w<mask> = accum (w, op(u))
+GrB_Vector_apply(                       # w<mask> = accum (w, op(u))
     w::Abstract_GrB_Vector,             # input/output vector for results
     mask::vector_mask_type,             # optional mask for w, unused if NULL
     accum::accum_type,                  # optional accum for z=accum(w,t)
     op::Abstract_GrB_UnaryOp,           # operator to apply to the entries
     u::Abstract_GrB_Vector,             # first input:  vector u
     desc::desc_type                     # descriptor for w and mask
-)
-end
+) = _NI("GrB_Vector_apply")
 
 """
     GrB_Matrix_apply(C, Mask, accum, op, A, desc)
@@ -108,12 +107,11 @@ row: 1 : 1 entries [2:2]
     column 1: int64 -30
 ```
 """
-function GrB_Matrix_apply(              # C<Mask> = accum (C, op(A)) or op(A')
+GrB_Matrix_apply(                       # C<Mask> = accum (C, op(A)) or op(A')
     C::Abstract_GrB_Matrix,             # input/output matrix for results
     Mask::matrix_mask_type,             # optional mask for C, unused if NULL
     accum::accum_type,                  # optional accum for Z=accum(C,T)
     op::Abstract_GrB_UnaryOp,           # operator to apply to the entries
     A::Abstract_GrB_Matrix,             # first input:  matrix A
     desc::desc_type                     # descriptor for C, mask, and A
-)
-end
+) = _NI("GrB_Matrix_apply")

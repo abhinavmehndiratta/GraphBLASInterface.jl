@@ -1,5 +1,6 @@
 ```@docs
 has_offset_indices
+zero
 ```
 
 ## Matrix functions

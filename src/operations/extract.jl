@@ -60,7 +60,7 @@ julia> GrB_Vector_extractTuples(W)[2]
  84
 ```
 """
-function GrB_Vector_extract(                        # w<mask> = accum (w, u(I))
+GrB_Vector_extract(                                 # w<mask> = accum (w, u(I))
         w::Abstract_GrB_Vector,                     # input/output vector for results
         mask::vector_mask_type,                     # optional mask for w, unused if NULL
         accum::accum_type,                          # optional accum for z=accum(w,t)
@@ -68,15 +68,13 @@ function GrB_Vector_extract(                        # w<mask> = accum (w, u(I))
         I::indices_type,                            # row indices
         ni::GrB_Index,                              # number of row indices
         desc::desc_type                             # descriptor for w and mask
-)
-end
+) = _NI("GrB_Vector_extract")
 
 """
     GrB_Matrix_extract(C, Mask, accum, A, I, ni, J, nj, desc)
 
 Extract a sub-matrix from a larger matrix as specified by a set of row indices and a set of column indices.
 The result is a matrix whose size is equal to size of the sets of indices.
-
 
 # Examples
 ```jldoctest
@@ -130,7 +128,7 @@ julia> GrB_Matrix_extractTuples(OUT)[3]
  6
 ```
 """
-function GrB_Matrix_extract(                        # C<Mask> = accum (C, A(I,J))
+GrB_Matrix_extract(                                 # C<Mask> = accum (C, A(I,J))
         C::Abstract_GrB_Matrix,                     # input/output matrix for results
         Mask::matrix_mask_type,                     # optional mask for C, unused if NULL
         accum::accum_type,                          # optional accum for Z=accum(C,T)
@@ -140,8 +138,7 @@ function GrB_Matrix_extract(                        # C<Mask> = accum (C, A(I,J)
         J::indices_type,                            # column indices
         nj::GrB_Index,                              # number of column indices
         desc::desc_type                             # descriptor for C, Mask, and A
-)
-end
+) = _NI("GrB_Matrix_extract")
 
 """
     GrB_Col_extract(w, mask, accum, A, I, ni, j, desc)
@@ -210,7 +207,7 @@ julia> GrB_Vector_extractTuples(out)[2]
  57
 ```
 """
-function GrB_Col_extract(                           # w<mask> = accum (w, A(I,j))
+GrB_Col_extract(                                    # w<mask> = accum (w, A(I,j))
         w::Abstract_GrB_Vector,                     # input/output matrix for results
         mask::vector_mask_type,                     # optional mask for w, unused if NULL
         accum::accum_type,                          # optional accum for z=accum(w,t)
@@ -219,5 +216,4 @@ function GrB_Col_extract(                           # w<mask> = accum (w, A(I,j)
         ni::GrB_Index,                              # number of row indices
         j::GrB_Index,                               # column index
         desc::desc_type                             # descriptor for w, mask, and A
-)
-end
+) = _NI("GrB_Col_extract")

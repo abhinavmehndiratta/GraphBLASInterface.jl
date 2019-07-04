@@ -45,7 +45,7 @@ julia> GrB_Matrix_extractTuples(C)
 ([0, 1], [0, 1], [50, 300])
 ```
 """
-function GrB_mxm(                           # C<Mask> = accum (C, A*B)
+GrB_mxm(                                    # C<Mask> = accum (C, A*B)
     C::Abstract_GrB_Matrix,                 # input/output matrix for results
     Mask::matrix_mask_type,                 # optional mask for C, unused if NULL
     accum::accum_type,                      # optional accum for Z=accum(C,T)
@@ -53,8 +53,7 @@ function GrB_mxm(                           # C<Mask> = accum (C, A*B)
     A::Abstract_GrB_Matrix,                 # first input:  matrix A
     B::Abstract_GrB_Matrix,                 # second input: matrix B
     desc::desc_type                         # descriptor for C, Mask, A, and B
-)
-end
+) = _NI("GrB_mxm")
 
 """
     GrB_vxm(w, mask, accum, semiring, u, A, desc)
@@ -103,7 +102,7 @@ julia> GrB_Vector_extractTuples(w)
 ([0, 1], [50, 120])
 ```
 """
-function GrB_vxm(                           # w'<Mask> = accum (w, u'*A)
+GrB_vxm(                                    # w'<Mask> = accum (w, u'*A)
     w::Abstract_GrB_Vector,                 # input/output vector for results
     mask::vector_mask_type,                 # optional mask for w, unused if NULL
     accum::accum_type,                      # optional accum for z=accum(w,t)
@@ -111,8 +110,7 @@ function GrB_vxm(                           # w'<Mask> = accum (w, u'*A)
     u::Abstract_GrB_Vector,                 # first input:  vector u
     A::Abstract_GrB_Matrix,                 # second input: matrix A
     desc::desc_type                         # descriptor for w, mask, and A
-)
-end
+) = _NI("GrB_vxm")
 
 """
     GrB_mxv(w, mask, accum, semiring, A, u, desc)
@@ -161,7 +159,7 @@ julia> GrB_Vector_extractTuples(w)
 ([0, 1], [170, 180])
 ```
 """
-function GrB_mxv(                           # w<Mask> = accum (w, A*u)
+GrB_mxv(                                    # w<Mask> = accum (w, A*u)
     w::Abstract_GrB_Vector,                 # input/output vector for results
     mask::vector_mask_type,                 # optional mask for w, unused if NULL
     accum::accum_type,                      # optional accum for z=accum(w,t)
@@ -169,5 +167,4 @@ function GrB_mxv(                           # w<Mask> = accum (w, A*u)
     A::Abstract_GrB_Matrix,                 # first input:  matrix A
     u::Abstract_GrB_Vector,                 # second input: vector u
     desc::desc_type                         # descriptor for w, mask, and A
-)
-end
+) = _NI("GrB_mxv")

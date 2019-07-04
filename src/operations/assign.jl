@@ -47,7 +47,7 @@ julia> GrB_Vector_extractTuples(w)
 ([2, 4], [10, 20])
 ```
 """
-function GrB_Vector_assign(                         # w<mask>(I) = accum (w(I),u)
+GrB_Vector_assign(                                  # w<mask>(I) = accum (w(I),u)
         w::Abstract_GrB_Vector,                     # input/output matrix for results
         mask::vector_mask_type,                     # optional mask for w, unused if NULL
         accum::accum_type,                          # optional accum for z=accum(w(I),t)
@@ -55,8 +55,7 @@ function GrB_Vector_assign(                         # w<mask>(I) = accum (w(I),u
         I::indices_type,                            # row indices
         ni::GrB_Index,                              # number of row indices
         desc::desc_type                             # descriptor for w and mask
-)
-end
+) = _NI("GrB_Vector_assign")
 
 """
     GrB_Matrix_assign(C, Mask, accum, A, I, ni, J, nj, desc)
@@ -95,7 +94,7 @@ julia> GrB_Matrix_extractTuples(C)
 ([0, 0, 2, 2], [1, 2, 0, 2], [10, 20, 30, 40])
 ```
 """
-function GrB_Matrix_assign(                         # C<Mask>(I,J) = accum (C(I,J),A)
+GrB_Matrix_assign(                                  # C<Mask>(I,J) = accum (C(I,J),A)
         C::Abstract_GrB_Matrix,                     # input/output matrix for results
         Mask::matrix_mask_type,                     # optional mask for C, unused if NULL
         accum::accum_type,                          # optional accum for Z=accum(C(I,J),T)
@@ -105,8 +104,7 @@ function GrB_Matrix_assign(                         # C<Mask>(I,J) = accum (C(I,
         J::indices_type,                            # column indices
         nj::GrB_Index,                              # number of column indices
         desc::desc_type                             # descriptor for C, Mask, and A
-)
-end
+) = _NI("GrB_Matrix_assign")
 
 """
     GrB_Col_assign(C, Mask, accum, u, I, ni, j, desc)
@@ -151,7 +149,7 @@ julia> GrB_Matrix_extractTuples(A)
 ([0, 0, 1, 2, 2], [1, 2, 0, 0, 2], [10, 20, 5, 6, 40])
 ```
 """
-function GrB_Col_assign(                            # C<mask>(I,j) = accum (C(I,j),u)
+GrB_Col_assign(                                     # C<mask>(I,j) = accum (C(I,j),u)
         C::Abstract_GrB_Matrix,                     # input/output matrix for results
         mask::vector_mask_type,                     # optional mask for C(:,j), unused if NULL
         accum::accum_type,                          # optional accum for z=accum(C(I,j),t)
@@ -160,8 +158,7 @@ function GrB_Col_assign(                            # C<mask>(I,j) = accum (C(I,
         ni::GrB_Index,                              # number of row indices
         j::GrB_Index,                               # column index
         desc::desc_type                             # descriptor for C(:,j) and mask
-)
-end
+) = _NI("GrB_Col_assign")
 
 """
     GrB_Row_assign(C, mask, accum, u, i, J, nj, desc)
@@ -206,7 +203,7 @@ julia> GrB_Matrix_extractTuples(A)
 ([0, 0, 0, 2, 2], [1, 2, 3, 0, 2], [5, 20, 6, 30, 40])
 ```
 """
-function GrB_Row_assign(                            # C<mask'>(i,J) = accum (C(i,J),u')
+GrB_Row_assign(                                     # C<mask'>(i,J) = accum (C(i,J),u')
         C::Abstract_GrB_Matrix,                     # input/output matrix for results
         mask::vector_mask_type,                     # optional mask for C(i,:), unused if NULL
         accum::accum_type,                          # optional accum for z=accum(C(i,J),t)
@@ -215,8 +212,7 @@ function GrB_Row_assign(                            # C<mask'>(i,J) = accum (C(i
         J::indices_type,                            # column indices
         nj::GrB_Index,                              # number of column indices
         desc::desc_type                             # descriptor for C(i,:) and mask
-)
-end
+) = _NI("GrB_Row_assign")
 
 """
     GrB_Vector_assign(w, mask, accum, x, I, ni, desc)
@@ -244,7 +240,7 @@ julia> GrB_Vector_extractTuples(w)
 ([0, 3], [2.3, 2.3])
 ```
 """
-function GrB_Vector_assign(                         # w<mask>(I) = accum (w(I),x)
+GrB_Vector_assign(                                  # w<mask>(I) = accum (w(I),x)
         w::Abstract_GrB_Vector,                     # input/output vector for results
         mask::vector_mask_type,                     # optional mask for w, unused if NULL
         accum::accum_type,                          # optional accum for Z=accum(w(I),x)
@@ -252,8 +248,7 @@ function GrB_Vector_assign(                         # w<mask>(I) = accum (w(I),x
         I::indices_type,                            # row indices
         ni::GrB_Index,                              # number of row indices
         desc::desc_type                             # descriptor for w and mask
-)
-end
+) = _NI("GrB_Vector_assign")
 
 """
     GrB_Matrix_assign(C, Mask, accum, x, I, ni, J, nj, desc)
@@ -281,7 +276,7 @@ julia> GrB_Matrix_extractTuples(A)
 ([0, 0, 1, 1], [0, 1, 0, 1], Bool[true, true, true, true])
 ```
 """
-function GrB_Matrix_assign(                         # C<Mask>(I,J) = accum (C(I,J),x)
+GrB_Matrix_assign(                                  # C<Mask>(I,J) = accum (C(I,J),x)
         C::Abstract_GrB_Matrix,                     # input/output matrix for results
         Mask::matrix_mask_type,                     # optional mask for C, unused if NULL
         accum::accum_type,                          # optional accum for Z=accum(C(I,J),x)
@@ -291,5 +286,4 @@ function GrB_Matrix_assign(                         # C<Mask>(I,J) = accum (C(I,
         J::indices_type,                            # column indices
         nj::GrB_Index,                              # number of column indices
         desc::desc_type                             # descriptor for C and Mask
-)
-end
+) = _NI("GrB_Matrix_assign")

@@ -3,21 +3,21 @@
 
 Create a new NULL GraphBLAS type.
 """
-function GrB_Type(varargs...) end
+GrB_Type(varargs...) = _NI("GrB_Type")
 
 """
     GrB_Type_new(type, sizeof_type)
 
 Initialize a GraphBLAS type with its size.
 """
-function GrB_Type_new(type::Abstract_GrB_Type, sizeof_type::UInt) end
+GrB_Type_new(type::Abstract_GrB_Type, sizeof_type::UInt) = _NI("GrB_Type_new")
 
 """
     GrB_UnaryOp(varargs...)
 
 Create a new NULL GraphBLAS unary operator.
 """
-function GrB_UnaryOp(varargs...) end
+GrB_UnaryOp(varargs...) = _NI("GrB_UnaryOp")
 
 """
     GrB_UnaryOp_new(op, fn, ztype, xtype)
@@ -77,19 +77,18 @@ column: 0 : 2 entries [0:1]
 
 ```
 """
-function GrB_UnaryOp_new(
+GrB_UnaryOp_new(
     op::Abstract_GrB_UnaryOp,
     fn::Function,
     ztype::Abstract_GrB_Type,
-    xtype::Abstract_GrB_Type)
-end
+    xtype::Abstract_GrB_Type) = _NI("GrB_UnaryOp_new")
 
 """
     GrB_BinaryOp(varargs...)
 
 Create a new NULL GraphBLAS binary operator.
 """
-function GrB_BinaryOp(varargs...) end
+GrB_BinaryOp(varargs...) = _NI("GrB_BinaryOp")
 
 """
     GrB_BinaryOp_new(op, fn, ztype, xtype, ytype)
@@ -140,46 +139,43 @@ column: 0 : 2 entries [0:1]
 
 ```
 """
-function GrB_BinaryOp_new(
+GrB_BinaryOp_new(
     op::Abstract_GrB_BinaryOp,
     fn::Function,
     ztype::Abstract_GrB_Type,
     xtype::Abstract_GrB_Type,
-    ytype::Abstract_GrB_Type)
-end
+    ytype::Abstract_GrB_Type) = _NI("GrB_BinaryOp_new")
 
 """
     GrB_Monoid(varargs...)
 
 Create a new NULL GraphBLAS monoid.
 """
-function GrB_Monoid(varargs...) end
+GrB_Monoid(varargs...) = _NI("GrB_Monoid")
 
 """
     GrB_Monoid_new(monoid, binary_op, identity)
 
 Initialize a GraphBLAS monoid with specified binary operator and identity value.
 """
-function GrB_Monoid_new(
-        monoid::Abstract_GrB_Monoid,
-        binary_op::Abstract_GrB_BinaryOp,
-        identity)
-end
+GrB_Monoid_new(
+    monoid::Abstract_GrB_Monoid,
+    binary_op::Abstract_GrB_BinaryOp,
+    identity) = _NI("GrB_Monoid_new")
 
 """
     GrB_Semiring(varargs...)
 
 Create a new NULL GraphBLAS semiring.
 """
-function GrB_Semiring(varargs...) end
+GrB_Semiring(varargs...) = _NI("GrB_Semiring")
 
 """
     GrB_Semiring_new(semiring, monoid, binary_op)
 
 Initialize a GraphBLAS semiring with specified monoid and binary operator.
 """
-function GrB_Semiring_new(
+GrB_Semiring_new(
     semiring::Abstract_GrB_Semiring,
     monoid::Abstract_GrB_Monoid,
-    binary_op::Abstract_GrB_BinaryOp)
-end
+    binary_op::Abstract_GrB_BinaryOp) = _NI("GrB_Semiring_new")

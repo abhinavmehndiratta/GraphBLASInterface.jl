@@ -65,16 +65,15 @@ julia> GrB_Vector_extractTuples(w)
 ([0, 4], [11.0, 9.9])
 ```
 """
-function GrB_eWiseMult_Vector_Semiring(          # w<Mask> = accum (w, u.*v)
-        w::Abstract_GrB_Vector,                  # input/output vector for results
-        mask::vector_mask_type,                  # optional mask for w, unused if NULL
-        accum::accum_type,                       # optional accum for z=accum(w,t)
-        semiring::Abstract_GrB_Semiring,         # defines '.*' for t=u.*v
-        u::Abstract_GrB_Vector,                  # first input:  vector u
-        v::Abstract_GrB_Vector,                  # second input: vector v
-        desc::desc_type                          # descriptor for w and mask
-)
-end
+GrB_eWiseMult_Vector_Semiring(                  # w<Mask> = accum (w, u.*v)
+    w::Abstract_GrB_Vector,                     # input/output vector for results
+    mask::vector_mask_type,                     # optional mask for w, unused if NULL
+    accum::accum_type,                          # optional accum for z=accum(w,t)
+    semiring::Abstract_GrB_Semiring,            # defines '.*' for t=u.*v
+    u::Abstract_GrB_Vector,                     # first input:  vector u
+    v::Abstract_GrB_Vector,                     # second input: vector v
+    desc::desc_type                             # descriptor for w and mask
+) = _NI("GrB_eWiseMult_Vector_Semiring")
 
 """
     GrB_eWiseMult_Vector_Monoid(w, mask, accum, monoid, u, v, desc)
@@ -124,16 +123,15 @@ julia> GrB_Vector_extractTuples(w)
 ([0, 4], [10.0, 3.3])
 ```
 """
-function GrB_eWiseMult_Vector_Monoid(           # w<Mask> = accum (w, u.*v)
-        w::Abstract_GrB_Vector,                 # input/output vector for results
-        mask::vector_mask_type,                 # optional mask for w, unused if NULL
-        accum::accum_type,                      # optional accum for z=accum(w,t)
-        monoid::Abstract_GrB_Monoid,            # defines '.*' for t=u.*v
-        u::Abstract_GrB_Vector,                 # first input:  vector u
-        v::Abstract_GrB_Vector,                 # second input: vector v
-        desc::desc_type                         # descriptor for w and mask
-)
-end
+GrB_eWiseMult_Vector_Monoid(                    # w<Mask> = accum (w, u.*v)
+    w::Abstract_GrB_Vector,                     # input/output vector for results
+    mask::vector_mask_type,                     # optional mask for w, unused if NULL
+    accum::accum_type,                          # optional accum for z=accum(w,t)
+    monoid::Abstract_GrB_Monoid,                # defines '.*' for t=u.*v
+    u::Abstract_GrB_Vector,                     # first input:  vector u
+    v::Abstract_GrB_Vector,                     # second input: vector v
+    desc::desc_type                             # descriptor for w and mask
+) = _NI("GrB_eWiseMult_Vector_Monoid")
 
 """
     GrB_eWiseMult_Vector_BinaryOp(w, mask, accum, mult, u, v, desc)
@@ -183,16 +181,15 @@ julia> GrB_Vector_extractTuples(w)
 ([0, 4], [11.0, 99.0])
 ```
 """
-function GrB_eWiseMult_Vector_BinaryOp(         # w<Mask> = accum (w, u.*v)
-        w::Abstract_GrB_Vector,                 # input/output vector for results
-        mask::vector_mask_type,                 # optional mask for w, unused if NULL
-        accum::accum_type,                      # optional accum for z=accum(w,t)
-        mult::Abstract_GrB_BinaryOp,            # defines '.*' for t=u.*v
-        u::Abstract_GrB_Vector,                 # first input:  vector u
-        v::Abstract_GrB_Vector,                 # second input: vector v
-        desc::desc_type                         # descriptor for w and mask
-)
-end
+GrB_eWiseMult_Vector_BinaryOp(                  # w<Mask> = accum (w, u.*v)
+    w::Abstract_GrB_Vector,                     # input/output vector for results
+    mask::vector_mask_type,                     # optional mask for w, unused if NULL
+    accum::accum_type,                          # optional accum for z=accum(w,t)
+    mult::Abstract_GrB_BinaryOp,                # defines '.*' for t=u.*v
+    u::Abstract_GrB_Vector,                     # first input:  vector u
+    v::Abstract_GrB_Vector,                     # second input: vector v
+    desc::desc_type                             # descriptor for w and mask
+) = _NI("GrB_eWiseMult_Vector_BinaryOp")
 
 """
     GrB_eWiseMult_Matrix_Semiring(C, Mask, accum, semiring, A, B, desc)
@@ -242,7 +239,7 @@ julia> GrB_Matrix_extractTuples(C)
 ([0, 2], [2, 0], [320, 510])
 ```
 """
-function GrB_eWiseMult_Matrix_Semiring(         # C<Mask> = accum (C, A.*B)
+GrB_eWiseMult_Matrix_Semiring(                  # C<Mask> = accum (C, A.*B)
     C::Abstract_GrB_Matrix,                     # input/output matrix for results
     Mask::matrix_mask_type,                     # optional mask for C, unused if NULL
     accum::accum_type,                          # optional accum for Z=accum(C,T)
@@ -250,8 +247,7 @@ function GrB_eWiseMult_Matrix_Semiring(         # C<Mask> = accum (C, A.*B)
     A::Abstract_GrB_Matrix,                     # first input:  matrix A
     B::Abstract_GrB_Matrix,                     # second input: matrix B
     desc::desc_type                             # descriptor for C, Mask, A, and B
-)
-end
+) = _NI("GrB_eWiseMult_Matrix_Semiring")
 
 """
     GrB_eWiseMult_Matrix_Monoid(C, Mask, accum, monoid, A, B, desc)
@@ -301,7 +297,7 @@ julia> GrB_Matrix_extractTuples(C)
 ([0, 2], [2, 0], [36, 47])
 ```
 """
-function GrB_eWiseMult_Matrix_Monoid(           # C<Mask> = accum (C, A.*B)
+GrB_eWiseMult_Matrix_Monoid(                    # C<Mask> = accum (C, A.*B)
     C::Abstract_GrB_Matrix,                     # input/output matrix for results
     Mask::matrix_mask_type,                     # optional mask for C, unused if NULL
     accum::accum_type,                          # optional accum for Z=accum(C,T)
@@ -309,8 +305,7 @@ function GrB_eWiseMult_Matrix_Monoid(           # C<Mask> = accum (C, A.*B)
     A::Abstract_GrB_Matrix,                     # first input:  matrix A
     B::Abstract_GrB_Matrix,                     # second input: matrix B
     desc::desc_type                             # descriptor for C, Mask, A, and B
-)
-end
+) = _NI("GrB_eWiseMult_Matrix_Monoid")
 
 """
     GrB_eWiseMult_Matrix_BinaryOp(C, Mask, accum, mult, A, B, desc)
@@ -360,7 +355,7 @@ julia> GrB_Matrix_extractTuples(C)
 ([0, 2], [2, 0], [36, 47])
 ```
 """
-function GrB_eWiseMult_Matrix_BinaryOp(         # C<Mask> = accum (C, A.*B)
+GrB_eWiseMult_Matrix_BinaryOp(                  # C<Mask> = accum (C, A.*B)
     C::Abstract_GrB_Matrix,                     # input/output matrix for results
     Mask::matrix_mask_type,                     # optional mask for C, unused if NULL
     accum::accum_type,                          # optional accum for Z=accum(C,T)
@@ -368,5 +363,4 @@ function GrB_eWiseMult_Matrix_BinaryOp(         # C<Mask> = accum (C, A.*B)
     A::Abstract_GrB_Matrix,                     # first input:  matrix A
     B::Abstract_GrB_Matrix,                     # second input: matrix B
     desc::desc_type                             # descriptor for C, Mask, A, and B
-)
-end
+) = _NI("GrB_eWiseMult_Matrix_BinaryOp")

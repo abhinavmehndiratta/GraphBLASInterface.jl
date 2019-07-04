@@ -3,7 +3,7 @@
 
 Create a new NULL GraphBLAS vector.
 """
-function GrB_Vector(varargs...) end
+GrB_Vector(varargs...) = _NI("GrB_Vector")
 
 """
     GrB_Vector_new(v, type, n)
@@ -24,11 +24,10 @@ julia> GrB_Vector_new(V, GrB_FP64, 4)
 GrB_SUCCESS::GrB_Info = 0
 ```
 """
-function GrB_Vector_new(
-        v::Abstract_GrB_Vector,
-        type::Abstract_GrB_Type,
-        n::GrB_Index)
-end
+GrB_Vector_new(
+    v::Abstract_GrB_Vector,
+    type::Abstract_GrB_Type,
+    n::GrB_Index) = _NI("GrB_Vector_new")
 
 """
     GrB_Vector_dup(w, u)
@@ -73,7 +72,7 @@ column: 0 : 3 entries [0:2]
     row 4: int64 4
 ```
 """
-function GrB_Vector_dup(w::Abstract_GrB_Vector, u::Abstract_GrB_Vector) end
+GrB_Vector_dup(w::Abstract_GrB_Vector, u::Abstract_GrB_Vector) = _NI("GrB_Vector_dup")
 
 """
     GrB_Vector_clear(v)
@@ -108,7 +107,7 @@ julia> GrB_Vector_extractTuples(V)
 (Int64[], Int64[])
 ```
 """
-function GrB_Vector_clear(v::Abstract_GrB_Vector) end
+GrB_Vector_clear(v::Abstract_GrB_Vector) = _NI("GrB_Vector_clear")
 
 """
     GrB_Vector_size(v)
@@ -138,7 +137,7 @@ julia> GrB_Vector_size(V)
 4
 ```
 """
-function GrB_Vector_size(v::Abstract_GrB_Vector) end
+GrB_Vector_size(v::Abstract_GrB_Vector) = _NI("GrB_Vector_size")
 
 """
     GrB_Vector_nvals(v)
@@ -168,7 +167,7 @@ julia> GrB_Vector_nvals(V)
 3
 ```
 """
-function GrB_Vector_nvals(v::Abstract_GrB_Vector) end
+GrB_Vector_nvals(v::Abstract_GrB_Vector) = _NI("GrB_Vector_nvals")
 
 """
     GrB_Vector_build(w, I, X, nvals, dup)
@@ -207,13 +206,12 @@ column: 0 : 3 entries [0:2]
     row 3: double 4.4
 ```
 """
-function GrB_Vector_build(
-        w::Abstract_GrB_Vector,
-        I::Vector{U},
-        X::Vector,
-        nvals::U,
-        dup::Abstract_GrB_BinaryOp) where {U <: GrB_Index}
-end
+GrB_Vector_build(
+    w::Abstract_GrB_Vector,
+    I::Vector{U},
+    X::Vector,
+    nvals::U,
+    dup::Abstract_GrB_BinaryOp) where U <: GrB_Index = _NI("GrB_Vector_build")
 
 """
     GrB_Vector_setElement(w, x, i)
@@ -248,11 +246,10 @@ julia> GrB_Vector_extractElement(V, 2)
 7
 ```
 """
-function GrB_Vector_setElement(
-        w::Abstract_GrB_Vector,
-        x,
-        i::GrB_Index)
-end
+GrB_Vector_setElement(
+    w::Abstract_GrB_Vector,
+    x,
+    i::GrB_Index) = _NI("GrB_Vector_setElement")
 
 """
     GrB_Vector_extractElement(v, i)
@@ -282,7 +279,7 @@ julia> GrB_Vector_extractElement(V, 2)
 3.2
 ```
 """
-function GrB_Vector_extractElement(v::Abstract_GrB_Vector, i::GrB_Index) end
+GrB_Vector_extractElement(v::Abstract_GrB_Vector, i::GrB_Index) = _NI("GrB_Vector_extractElement")
 
 """
     GrB_Vector_extractTuples(v)
@@ -312,4 +309,4 @@ julia> GrB_Vector_extractTuples(V)
 ([0, 2, 3], [2.1, 3.2, 4.4])
 ```
 """
-function GrB_Vector_extractTuples(v::Abstract_GrB_Vector) end
+GrB_Vector_extractTuples(v::Abstract_GrB_Vector) = _NI("GrB_Vector_extractTuples")

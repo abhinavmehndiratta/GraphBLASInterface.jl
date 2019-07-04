@@ -54,53 +54,53 @@ GrB_free(object::Abstract_GrB_Descriptor) = GrB_Descriptor_free(object)
 
 Free GraphBLAS user-defined type.
 """
-function GrB_Type_free(type::Abstract_GrB_Type) end
+GrB_Type_free(type::Abstract_GrB_Type) = _NI("GrB_Type_free")
 
 """
     GrB_UnaryOp_free(unaryop)
 
 Free unary operator.
 """
-function GrB_UnaryOp_free(unaryop::Abstract_GrB_UnaryOp) end
+GrB_UnaryOp_free(unaryop::Abstract_GrB_UnaryOp) = _NI("GrB_UnaryOp_free")
 
 """
     GrB_BinaryOp_free(binaryop)
 
 Free binary operator.
 """
-function GrB_BinaryOp_free(binaryop::Abstract_GrB_BinaryOp) end
+GrB_BinaryOp_free(binaryop::Abstract_GrB_BinaryOp) = _NI("GrB_BinaryOp_free")
 
 """
     GrB_Monoid_free(monoid)
 
 Free monoid.
 """
-function GrB_Monoid_free(monoid::Abstract_GrB_Monoid) end
+GrB_Monoid_free(monoid::Abstract_GrB_Monoid) = _NI("GrB_Monoid_free")
 
 """
     GrB_Semiring_free(semiring)
 
 Free semiring.
 """
-function GrB_Semiring_free(semiring::Abstract_GrB_Semiring) end
+GrB_Semiring_free(semiring::Abstract_GrB_Semiring) = _NI("GrB_Semiring_free")
 
 """
     GrB_Vector_free(v)
 
 Free vector.
 """
-function GrB_Vector_free(v::Abstract_GrB_Vector) end
+ GrB_Vector_free(v::Abstract_GrB_Vector) = _NI("GrB_Vector_free")
 
 """
     GrB_Matrix_free(A)
 
 Free matrix.
 """
-function GrB_Matrix_free(A::Abstract_GrB_Matrix) end
+GrB_Matrix_free(A::Abstract_GrB_Matrix) = _NI("GrB_Matrix_free")
 
 """
     GrB_Descriptor_free(desc)
 
 Free descriptor.
 """
-function GrB_Descriptor_free(desc::Abstract_GrB_Descriptor) end
+GrB_Descriptor_free(desc::Abstract_GrB_Descriptor) = _NI("GrB_Descriptor_free")
