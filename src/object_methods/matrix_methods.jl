@@ -1,26 +1,3 @@
-import Base.zero
-
-"""
-    has_offset_indices(A)
-
-Return true if indices of a GraphBLAS matrix/vector start at 0 instead of 1.
-"""
-has_offset_indices(A::Union{Abstract_GrB_Matrix, Abstract_GrB_Vector}) = _NI("has_offset_indices")
-
-"""
-    zero(A)
-
-Return an empty GraphBLAS matrix/vector with zero rows & columns and same type as A.
-"""
-zero(A::Union{Abstract_GrB_Matrix, Abstract_GrB_Vector}) = _NI("zero")
-
-"""
-    GrB_Matrix(varargs...)
-
-Create a new NULL GraphBLAS matrix.
-"""
-GrB_Matrix(varargs...) = _NI("GrB_Matrix")
-
 """
     GrB_Matrix_new(A, type, nrows, ncols)
 
