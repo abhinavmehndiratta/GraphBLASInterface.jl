@@ -4,7 +4,7 @@
 `GrB_wait` forces all pending operations to complete.
 Blocking mode is as if `GrB_wait` is called whenever a GraphBLAS method or operation returns to the user.
 """
-function GrB_wait() end
+function GrB_wait end
 
 """
     GrB_error()
@@ -28,4 +28,4 @@ function: GrB_init (mode)
 GrB_init must not be called twice
 ```
 """
-function GrB_error() end
+function GrB_error end

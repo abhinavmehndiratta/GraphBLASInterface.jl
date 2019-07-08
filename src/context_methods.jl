@@ -6,7 +6,7 @@
 With blocking mode, all operations finish before returning to the user application.
 With non-blocking mode, operations can be left pending, and are computed only when needed.
 """
-function GrB_init(mode::GrB_Mode) end
+function GrB_init end
 
 """
     GrB_finalize()
@@ -14,5 +14,5 @@ function GrB_init(mode::GrB_Mode) end
 `GrB_finalize` must be called as the last GraphBLAS operation.
 `GrB_finalize` does not call `GrB_wait`; any pending computations are abandoned.
 """
-function GrB_finalize() end
+function GrB_finalize end
 
