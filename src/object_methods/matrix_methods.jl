@@ -233,7 +233,6 @@ GrB_SUCCESS::GrB_Info = 0
 julia> GrB_Matrix_nvals(MAT)
 0x0000000000000000
 ```
-```
 """
 GrB_Matrix_clear(A::Abstract_GrB_Matrix) = _NI("GrB_Matrix_clear")
 
