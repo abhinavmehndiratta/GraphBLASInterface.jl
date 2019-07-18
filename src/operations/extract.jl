@@ -26,7 +26,7 @@ GrB_Vector{Int64}
 julia> GrB_Vector_new(V, GrB_INT64, 5)
 GrB_SUCCESS::GrB_Info = 0
 
-julia> I = [1, 2, 4]; X = [15, 32, 84]; n = 3;
+julia> I = ZeroBasedIndex[1, 2, 4]; X = [15, 32, 84]; n = 3;
 
 julia> GrB_Vector_build(V, I, X, n, GrB_FIRST_INT64)
 GrB_SUCCESS::GrB_Info = 0
@@ -51,7 +51,7 @@ GrB_Vector{Int64}
 julia> GrB_Vector_new(W, GrB_INT64, 2)
 GrB_SUCCESS::GrB_Info = 0
 
-julia> GrB_Vector_extract(W, GrB_NULL, GrB_NULL, V, [1, 4], 2, GrB_NULL)
+julia> GrB_Vector_extract(W, GrB_NULL, GrB_NULL, V, ZeroBasedIndex[1, 4], 2, GrB_NULL)
 GrB_SUCCESS::GrB_Info = 0
 
 julia> GrB_Vector_extractTuples(W)[2]
@@ -66,7 +66,7 @@ GrB_Vector_extract(                                 # w<mask> = accum (w, u(I))
         accum::accum_type,                          # optional accum for z=accum(w,t)
         u::Abstract_GrB_Vector,                     # first input:  vector u
         I::indices_type,                            # row indices
-        ni::GrB_Index,                              # number of row indices
+        ni::Union{Int64, UInt64},                   # number of row indices
         desc::desc_type                             # descriptor for w and mask
 ) = _NI("GrB_Vector_extract")
 
@@ -89,20 +89,19 @@ GrB_Matrix{Int8}
 julia> GrB_Matrix_new(MAT, GrB_INT8, 4, 4)
 GrB_SUCCESS::GrB_Info = 0
 
-julia> I = [1, 2, 2, 2, 3]; J = [1, 2, 1, 3, 3]; X = Int8[2, 3, 4, 5, 6]; n = 5;
-
+julia> I = ZeroBasedIndex[1, 2, 2, 2, 3]; J = ZeroBasedIndex[1, 2, 1, 3, 3]; X = Int8[2, 3, 4, 5, 6]; n = 5;
 
 julia> GrB_Matrix_build(MAT, I, J, X, n, GrB_FIRST_INT8)
 GrB_SUCCESS::GrB_Info = 0
 
 julia> @GxB_Matrix_fprint(MAT, GxB_COMPLETE)
 
-GraphBLAS matrix: MAT 
+GraphBLAS matrix: MAT
 nrows: 4 ncols: 4 max # entries: 5
 format: standard CSR vlen: 4 nvec_nonempty: 3 nvec: 4 plen: 4 vdim: 4
 hyper_ratio 0.0625
 GraphBLAS type:  int8_t size: 1
-number of entries: 5 
+number of entries: 5
 row: 1 : 1 entries [0:0]
     column 1: int8 2
 row: 2 : 3 entries [1:3]
@@ -119,7 +118,7 @@ GrB_Matrix{Int8}
 julia> GrB_Matrix_new(OUT, GrB_INT8, 2, 2)
 GrB_SUCCESS::GrB_Info = 0
 
-julia> GrB_Matrix_extract(OUT, GrB_NULL, GrB_NULL, MAT, [1, 3], 2, [1, 3], 2, GrB_NULL)
+julia> GrB_Matrix_extract(OUT, GrB_NULL, GrB_NULL, MAT, ZeroBasedIndex[1, 3], 2, ZeroBasedIndex[1, 3], 2, GrB_NULL)
 GrB_SUCCESS::GrB_Info = 0
 
 julia> GrB_Matrix_extractTuples(OUT)[3]
@@ -134,9 +133,9 @@ GrB_Matrix_extract(                                 # C<Mask> = accum (C, A(I,J)
         accum::accum_type,                          # optional accum for Z=accum(C,T)
         A::Abstract_GrB_Matrix,                     # first input:  matrix A
         I::indices_type,                            # row indices
-        ni::GrB_Index,                              # number of row indices
+        ni::Union{Int64, UInt64},                   # number of row indices
         J::indices_type,                            # column indices
-        nj::GrB_Index,                              # number of column indices
+        nj::Union{Int64, UInt64},                   # number of column indices
         desc::desc_type                             # descriptor for C, Mask, and A
 ) = _NI("GrB_Matrix_extract")
 
@@ -159,19 +158,19 @@ GrB_Matrix{Int8}
 julia> GrB_Matrix_new(MAT, GrB_INT8, 4, 4)
 GrB_SUCCESS::GrB_Info = 0
 
-julia> I = [1, 2, 2, 2, 3]; J = [1, 2, 1, 3, 3]; X = Int8[23, 34, 43, 57, 61]; n = 5;
+julia> I = ZeroBasedIndex[1, 2, 2, 2, 3]; J = ZeroBasedIndex[1, 2, 1, 3, 3]; X = Int8[23, 34, 43, 57, 61]; n = 5;
 
 julia> GrB_Matrix_build(MAT, I, J, X, n, GrB_FIRST_INT8)
 GrB_SUCCESS::GrB_Info = 0
 
 julia> @GxB_Matrix_fprint(MAT, GxB_COMPLETE)
 
-GraphBLAS matrix: MAT 
+GraphBLAS matrix: MAT
 nrows: 4 ncols: 4 max # entries: 5
 format: standard CSR vlen: 4 nvec_nonempty: 3 nvec: 4 plen: 4 vdim: 4
 hyper_ratio 0.0625
 GraphBLAS type:  int8_t size: 1
-number of entries: 5 
+number of entries: 5
 row: 1 : 1 entries [0:0]
     column 1: int8 23
 row: 2 : 3 entries [1:3]
@@ -197,7 +196,7 @@ GrB_Vector{Int8}
 julia> GrB_Vector_new(out, GrB_INT8, 3)
 GrB_SUCCESS::GrB_Info = 0
 
-julia> GrB_Col_extract(out, GrB_NULL, GrB_NULL, MAT, [1, 2, 3], 3, 2, desc) # extract elements of row 2
+julia> GrB_Col_extract(out, GrB_NULL, GrB_NULL, MAT, ZeroBasedIndex[1, 2, 3], 3, ZeroBasedIndex(2), desc) # extract elements of row 2
 GrB_SUCCESS::GrB_Info = 0
 
 julia> GrB_Vector_extractTuples(out)[2]
@@ -213,7 +212,7 @@ GrB_Col_extract(                                    # w<mask> = accum (w, A(I,j)
         accum::accum_type,                          # optional accum for z=accum(w,t)
         A::Abstract_GrB_Matrix,                     # first input:  matrix A
         I::indices_type,                            # row indices
-        ni::GrB_Index,                              # number of row indices
-        j::GrB_Index,                               # column index
+        ni::Union{Int64, UInt64},                   # number of row indices
+        j::Abstract_GrB_Index,                      # column index
         desc::desc_type                             # descriptor for w, mask, and A
 ) = _NI("GrB_Col_extract")

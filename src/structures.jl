@@ -1,5 +1,8 @@
-export Abstract_GrB_Type, Abstract_GrB_UnaryOp, Abstract_GrB_BinaryOp, Abstract_GrB_Monoid, Abstract_GrB_Semiring,
-       Abstract_GrB_Vector, Abstract_GrB_Matrix, Abstract_GrB_Descriptor, Abstract_GrB_NULL, Abstract_GrB_ALL
+export Abstract_GrB_Index, Abstract_GrB_Type, Abstract_GrB_UnaryOp, Abstract_GrB_BinaryOp, Abstract_GrB_Monoid, 
+       Abstract_GrB_Semiring, Abstract_GrB_Vector, Abstract_GrB_Matrix, Abstract_GrB_Descriptor, 
+       Abstract_GrB_NULL, Abstract_GrB_ALL
+
+abstract type Abstract_GrB_Index end
 
 abstract type Abstract_GrB_Type end
 

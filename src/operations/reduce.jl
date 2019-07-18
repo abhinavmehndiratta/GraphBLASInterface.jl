@@ -28,7 +28,7 @@ GrB_Matrix{Int64}
 julia> GrB_Matrix_new(A, GrB_INT64, 4, 4)
 GrB_SUCCESS::GrB_Info = 0
 
-julia> I = [0, 0, 2, 2]; J = [1, 2, 0, 2]; X = [10, 20, 30, 40]; n = 4;
+julia> I = ZeroBasedIndex[0, 0, 2, 2]; J = ZeroBasedIndex[1, 2, 0, 2]; X = [10, 20, 30, 40]; n = 4;
 
 julia> GrB_Matrix_build(A, I, J, X, n, GrB_FIRST_INT64)
 GrB_SUCCESS::GrB_Info = 0
@@ -84,7 +84,7 @@ GrB_Matrix{Int64}
 julia> GrB_Matrix_new(A, GrB_INT64, 4, 4)
 GrB_SUCCESS::GrB_Info = 0
 
-julia> I = [0, 0, 2, 2]; J = [1, 2, 0, 2]; X = [10, 20, 30, 40]; n = 4;
+julia> I = ZeroBasedIndex[0, 0, 2, 2]; J = ZeroBasedIndex[1, 2, 0, 2]; X = [10, 20, 30, 40]; n = 4;
 
 julia> GrB_Matrix_build(A, I, J, X, n, GrB_FIRST_INT64)
 GrB_SUCCESS::GrB_Info = 0
@@ -140,7 +140,7 @@ GrB_Vector{Int64}
 julia> GrB_Vector_new(u, GrB_INT64, 5)
 GrB_SUCCESS::GrB_Info = 0
 
-julia> I = [0, 2, 4]; X = [10, 20, 30]; n = 3;
+julia> I = ZeroBasedIndex[0, 2, 4]; X = [10, 20, 30]; n = 3;
 
 julia> GrB_Vector_build(u, I, X, n, GrB_FIRST_INT64)
 GrB_SUCCESS::GrB_Info = 0
@@ -175,7 +175,7 @@ GrB_Matrix{Int64}
 julia> GrB_Matrix_new(A, GrB_INT64, 4, 4)
 GrB_SUCCESS::GrB_Info = 0
 
-julia> I = [0, 0, 2, 2]; J = [1, 2, 0, 2]; X = [10, 20, 30, 40]; n = 4;
+julia> I = ZeroBasedIndex[0, 0, 2, 2]; J = ZeroBasedIndex[1, 2, 0, 2]; X = [10, 20, 30, 40]; n = 4;
 
 julia> GrB_Matrix_build(A, I, J, X, n, GrB_FIRST_INT64)
 GrB_SUCCESS::GrB_Info = 0

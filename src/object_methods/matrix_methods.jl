@@ -20,8 +20,8 @@ GrB_SUCCESS::GrB_Info = 0
 GrB_Matrix_new(
     A::Abstract_GrB_Matrix,
     type::Abstract_GrB_Type,
-    nrows::GrB_Index,
-    ncols::GrB_Index) = _NI("GrB_Matrix_new")
+    nrows::Union{Int64, UInt64},
+    ncols::Union{Int64, UInt64}) = _NI("GrB_Matrix_new")
 
 """
     GrB_Matrix_build(C, I, J, X, nvals, dup)
@@ -41,7 +41,7 @@ GrB_Matrix{Int8}
 julia> GrB_Matrix_new(MAT, GrB_INT8, 4, 4)
 GrB_SUCCESS::GrB_Info = 0
 
-julia> I = [1, 2, 2, 2, 3]; J = [1, 2, 1, 3, 3]; X = Int8[2, 3, 4, 5, 6]; n = 5;
+julia> I = ZeroBasedIndex[1, 2, 2, 2, 3]; J = ZeroBasedIndex[1, 2, 1, 3, 3]; X = Int8[2, 3, 4, 5, 6]; n = 5;
 
 julia> GrB_Matrix_build(MAT, I, J, X, n, GrB_FIRST_INT8)
 GrB_SUCCESS::GrB_Info = 0
@@ -69,8 +69,8 @@ GrB_Matrix_build(
     I::Vector{U},
     J::Vector{U},
     X::Vector,
-    nvals::U,
-    dup::Abstract_GrB_BinaryOp) where {U <: GrB_Index} = _NI("GrB_Matrix_build")
+    nvals::Union{Int64, UInt64},
+    dup::Abstract_GrB_BinaryOp) where {U <: Abstract_GrB_Index} = _NI("GrB_Matrix_build")
 
 """
     GrB_Matrix_nrows(A)
@@ -92,7 +92,7 @@ julia> GrB_Matrix_new(MAT, GrB_INT8, 4, 4)
 GrB_SUCCESS::GrB_Info = 0
 
 julia> GrB_Matrix_nrows(MAT)
-4
+0x0000000000000004
 ```
 """
 GrB_Matrix_nrows(A::Abstract_GrB_Matrix) = _NI("GrB_Matrix_nrows")
@@ -117,7 +117,7 @@ julia> GrB_Matrix_new(MAT, GrB_INT8, 4, 4)
 GrB_SUCCESS::GrB_Info = 0
 
 julia> GrB_Matrix_ncols(MAT)
-4
+0x0000000000000004
 ```
 """
 GrB_Matrix_ncols(A::Abstract_GrB_Matrix) = _NI("GrB_Matrix_ncols")
@@ -141,13 +141,13 @@ GrB_Matrix{Int8}
 julia> GrB_Matrix_new(MAT, GrB_INT8, 4, 4)
 GrB_SUCCESS::GrB_Info = 0
 
-julia> I = [1, 2, 2, 2, 3]; J = [1, 2, 1, 3, 3]; X = Int8[2, 3, 4, 5, 6]; n = 5;
+julia> I = [ZeroBasedIndex1, 2, 2, 2, 3]; J = ZeroBasedIndex[1, 2, 1, 3, 3]; X = Int8[2, 3, 4, 5, 6]; n = 5;
 
 julia> GrB_Matrix_build(MAT, I, J, X, n, GrB_FIRST_INT8)
 GrB_SUCCESS::GrB_Info = 0
 
 julia> GrB_Matrix_nvals(MAT)
-5
+0x0000000000000005
 ```
 """
 GrB_Matrix_nvals(A::Abstract_GrB_Matrix) = _NI("GrB_Matrix_nvals")
@@ -170,7 +170,7 @@ GrB_Matrix{Int8}
 julia> GrB_Matrix_new(MAT, GrB_INT8, 4, 4)
 GrB_SUCCESS::GrB_Info = 0
 
-julia> I = [1, 2, 2, 2, 3]; J = [1, 2, 1, 3, 3]; X = Int8[2, 3, 4, 5, 6]; n = 5;
+julia> I = ZeroBasedIndex[1, 2, 2, 2, 3]; J = ZeroBasedIndex[1, 2, 1, 3, 3]; X = Int8[2, 3, 4, 5, 6]; n = 5;
 
 julia> GrB_Matrix_build(MAT, I, J, X, n, GrB_FIRST_INT8)
 GrB_SUCCESS::GrB_Info = 0
@@ -181,7 +181,7 @@ GrB_Matrix{Int8}
 julia> GrB_Matrix_dup(B, MAT)
 GrB_SUCCESS::GrB_Info = 0
 
-julia> @GxB_Matrix_fprint(B, GxB_SHORT)
+julia> @GxB_Matrix_fprint(B, GxB_COMPLETE)
 
 GraphBLAS matrix: B
 nrows: 4 ncols: 4 max # entries: 5
@@ -219,19 +219,20 @@ GrB_Matrix{Int8}
 julia> GrB_Matrix_new(MAT, GrB_INT8, 4, 4)
 GrB_SUCCESS::GrB_Info = 0
 
-julia> I = [1, 2, 2, 2, 3]; J = [1, 2, 1, 3, 3]; X = Int8[2, 3, 4, 5, 6]; n = 5;
+julia> I = ZeroBasedIndex[1, 2, 2, 2, 3]; J = ZeroBasedIndex[1, 2, 1, 3, 3]; X = Int8[2, 3, 4, 5, 6]; n = 5;
 
 julia> GrB_Matrix_build(MAT, I, J, X, n, GrB_FIRST_INT8)
 GrB_SUCCESS::GrB_Info = 0
 
 julia> GrB_Matrix_nvals(MAT)
-5
+0x0000000000000005
 
 julia> GrB_Matrix_clear(MAT)
 GrB_SUCCESS::GrB_Info = 0
 
 julia> GrB_Matrix_nvals(MAT)
-0
+0x0000000000000000
+```
 ```
 """
 GrB_Matrix_clear(A::Abstract_GrB_Matrix) = _NI("GrB_Matrix_clear")
@@ -254,27 +255,26 @@ GrB_Matrix{Int8}
 julia> GrB_Matrix_new(MAT, GrB_INT8, 4, 4)
 GrB_SUCCESS::GrB_Info = 0
 
-julia> I = [1, 2, 2, 2, 3]; J = [1, 2, 1, 3, 3]; X = Int8[2, 3, 4, 5, 6]; n = 5;
-
+julia> I = ZeroBasedIndex[1, 2, 2, 2, 3]; J = ZeroBasedIndex[1, 2, 1, 3, 3]; X = Int8[2, 3, 4, 5, 6]; n = 5;
 
 julia> GrB_Matrix_build(MAT, I, J, X, n, GrB_FIRST_INT8)
 GrB_SUCCESS::GrB_Info = 0
 
-julia> GrB_Matrix_extractElement(MAT, 1, 1)
+julia> GrB_Matrix_extractElement(MAT, ZeroBasedIndex(1), ZeroBasedIndex(1))
 2
 
-julia> GrB_Matrix_setElement(MAT, Int8(7), 1, 1)
+julia> GrB_Matrix_setElement(MAT, Int8(7), ZeroBasedIndex(1), ZeroBasedIndex(1))
 GrB_SUCCESS::GrB_Info = 0
 
-julia> GrB_Matrix_extractElement(MAT, 1, 1)
+julia> GrB_Matrix_extractElement(MAT, ZeroBasedIndex(1), ZeroBasedIndex(1))
 7
 ```
 """
 GrB_Matrix_setElement(
     C::Abstract_GrB_Matrix,
     X,
-    I::GrB_Index,
-    J::GrB_Index) = _NI("GrB_Matrix_setElement")
+    I::Abstract_GrB_Index,
+    J::Abstract_GrB_Index) = _NI("GrB_Matrix_setElement")
 
 """
     GrB_Matrix_extractElement(A, row_index, col_index)
@@ -295,22 +295,22 @@ GrB_Matrix{Int8}
 julia> GrB_Matrix_new(MAT, GrB_INT8, 4, 4)
 GrB_SUCCESS::GrB_Info = 0
 
-julia> I = [1, 2, 2, 2, 3]; J = [1, 2, 1, 3, 3]; X = Int8[2, 3, 4, 5, 6]; n = 5;
+julia> I = ZeroBasedIndex[1, 2, 2, 2, 3]; J = ZeroBasedIndex[1, 2, 1, 3, 3]; X = Int8[2, 3, 4, 5, 6]; n = 5;
 
 julia> GrB_Matrix_build(MAT, I, J, X, n, GrB_FIRST_INT8)
 GrB_SUCCESS::GrB_Info = 0
 
-julia> GrB_Matrix_extractElement(MAT, 1, 1)
+julia> GrB_Matrix_extractElement(MAT, ZeroBasedIndex(1), ZeroBasedIndex(1))
 2
 ```
 """
 GrB_Matrix_extractElement(
     A::Abstract_GrB_Matrix,
-    row_index::GrB_Index,
-    col_index::GrB_Index) = _NI("GrB_Matrix_extractElement")
+    row_index::Abstract_GrB_Index,
+    col_index::Abstract_GrB_Index) = _NI("GrB_Matrix_extractElement")
 
 """
-    GrB_Matrix_extractTuples(A)
+    GrB_Matrix_extractTuples(A, index_type)
 
 Return tuples stored in a matrix if successful.
 Else return `GrB_Info` error code.
@@ -328,13 +328,13 @@ GrB_Matrix{Int8}
 julia> GrB_Matrix_new(MAT, GrB_INT8, 4, 4)
 GrB_SUCCESS::GrB_Info = 0
 
-julia> I = [1, 2, 2, 2, 3]; J = [1, 2, 1, 3, 3]; X = Int8[2, 3, 4, 5, 6]; n = 5;
+julia> I = ZeroBasedIndex[1, 2, 2, 2, 3]; J = ZeroBasedIndex[1, 2, 1, 3, 3]; X = Int8[2, 3, 4, 5, 6]; n = 5;
 
 julia> GrB_Matrix_build(MAT, I, J, X, n, GrB_FIRST_INT8)
 GrB_SUCCESS::GrB_Info = 0
 
 julia> GrB_Matrix_extractTuples(MAT)
-([1, 2, 2, 2, 3], [1, 1, 2, 3, 3], Int8[2, 4, 3, 5, 6])
+(ZeroBasedIndex[ZeroBasedIndex(0x0000000000000001), ZeroBasedIndex(0x0000000000000002), ZeroBasedIndex(0x0000000000000002), ZeroBasedIndex(0x0000000000000002), ZeroBasedIndex(0x0000000000000003)], ZeroBasedIndex[ZeroBasedIndex(0x0000000000000001), ZeroBasedIndex(0x0000000000000001), ZeroBasedIndex(0x0000000000000002), ZeroBasedIndex(0x0000000000000003), ZeroBasedIndex(0x0000000000000003)], Int8[2, 4, 3, 5, 6])
 ```
 """
-GrB_Matrix_extractTuples(A::Abstract_GrB_Matrix) = _NI("GrB_Matrix_extractTuples")
+GrB_Matrix_extractTuples(A::Abstract_GrB_Matrix, index_type::Type{<:Abstract_GrB_Index}) = _NI("GrB_Matrix_extractTuples")
