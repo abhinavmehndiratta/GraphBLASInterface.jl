@@ -237,6 +237,7 @@ GrB_SUCCESS::GrB_Info = 0
 
 julia> GrB_Vector_extractElement(V, ZeroBasedIndex(2))
 7
+```
 """
 GrB_Vector_setElement(
     w::Abstract_GrB_Vector,
